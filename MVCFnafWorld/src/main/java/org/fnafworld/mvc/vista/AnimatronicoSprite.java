@@ -13,11 +13,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
-
+/**
+ * 
+ * @author lagar
+ */
 public class AnimatronicoSprite {
-    // NUEVO: Variable para almacenar el nombre del animatrónico
     private String nombre;
-    
     private String urlAnimatronico;
     private List<BufferedImage> animacionQuieto;
     private List<BufferedImage> animacionAtaque;
@@ -40,8 +41,6 @@ public class AnimatronicoSprite {
 
     public AnimatronicoSprite(String animatronico, int x1, int y1, int ancho1, int alto1, int frames1, int gap1,
             int x2, int y2, int ancho2, int alto2, int frames2, int gap2, int delayQuieto, int delayAtaque) {
-        
-        // NUEVO: Asignamos el parámetro recibido al atributo de la clase
         this.nombre = animatronico;
         
         this.urlAnimatronico = "/animatronicos/" + animatronico + ".png";
@@ -59,7 +58,6 @@ public class AnimatronicoSprite {
         this.ultimoTiempo = System.currentTimeMillis();
     }
 
-    // NUEVO: Getter para que PanelFondoBatalla pueda consultar el nombre
     public String getNombre() {
         return nombre;
     }
