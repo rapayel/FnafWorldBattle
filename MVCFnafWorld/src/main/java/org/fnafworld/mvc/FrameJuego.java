@@ -9,8 +9,10 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.List;
 import javax.swing.JFrame;
+import org.fnafworld.dtos.AnimatronicoDTO;
 import org.fnafworld.dtos.JugadorDTO;
 import org.fnafworld.interfaces.Observador;
+import org.fnafworld.mvc.vista.PanelAccionesBatalla;
 import org.fnafworld.mvc.vista.PanelEstadisticasEquipo;
 import org.fnafworld.mvc.vista.PanelFondoBatalla;
 import org.fnafworld.sonido.AudioManager;
@@ -23,13 +25,15 @@ public class FrameJuego extends JFrame implements Observador {
     private PanelFondoBatalla fondoBatalla;
     private PanelEstadisticasEquipo panelIzquierdo;
     private PanelEstadisticasEquipo panelDerecho;
+    private PanelAccionesBatalla panelAcciones; 
     private ControlJuego control;
 
     public FrameJuego(AudioManager audio, PanelFondoBatalla fondoBatalla, ControlJuego control, ModeloJuego modelo) {
         this.fondoBatalla = fondoBatalla;
         this.control = control;
-        Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/iconos/iconojuego.png"));
+        
         modelo.registrarObservador(this);
+        Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/iconos/iconojuego.png"));
         setIconImage(icono);
         this.setTitle("FNAF World - Modo Batalla");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,10 +41,12 @@ public class FrameJuego extends JFrame implements Observador {
 
         panelIzquierdo = new PanelEstadisticasEquipo("EQUIPO ROJO");
         panelDerecho = new PanelEstadisticasEquipo("EQUIPO AZUL");
+        panelAcciones = new PanelAccionesBatalla();
 
         this.add(panelIzquierdo, BorderLayout.WEST);
         this.add(fondoBatalla, BorderLayout.CENTER);
         this.add(panelDerecho, BorderLayout.EAST);
+        this.add(panelAcciones, BorderLayout.SOUTH); 
 
         this.pack();
         
@@ -56,6 +62,7 @@ public class FrameJuego extends JFrame implements Observador {
         List<JugadorDTO> listaJugadores = contexto.getJugadores();
         if (listaJugadores != null) {
             mapearEquiposHaciaPaneles(listaJugadores);
+            buscarYEnviarHabilidadesTurno(listaJugadores); 
         }
     }
 
@@ -74,5 +81,19 @@ public class FrameJuego extends JFrame implements Observador {
 
         panelIzquierdo.actualizarDatos(equipoRojo);
         panelDerecho.actualizarDatos(equipoAzul);
+    }
+
+    private void buscarYEnviarHabilidadesTurno(List<JugadorDTO> todosLosJugadores) {
+        for (JugadorDTO jugador : todosLosJugadores) {
+            if (jugador.getGrupo() != null) {
+                for (AnimatronicoDTO anim : jugador.getGrupo()) {
+                    if (anim.isTurnoAnimatronico()) {
+                        panelAcciones.actualizarHabilidades(anim.getHabilidades());
+                        return; 
+                    }
+                }
+            }
+        }
+        panelAcciones.actualizarHabilidades(null);
     }
 }
