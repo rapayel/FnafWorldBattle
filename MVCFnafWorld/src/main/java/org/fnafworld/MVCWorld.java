@@ -10,38 +10,67 @@ import javax.swing.SwingUtilities;
 import org.fnafworld.dtos.AnimatronicoDTO;
 import org.fnafworld.dtos.HabilidadDTO;
 import org.fnafworld.dtos.JugadorDTO;
+import org.fnafworld.dominio.fachada.IFachadaJuego;
+import org.fnafworld.dominio.fachada.FachadaJuego;
 import org.fnafworld.mvc.ControlJuego;
 import org.fnafworld.mvc.FrameJuego;
 import org.fnafworld.mvc.ModeloJuego;
 import org.fnafworld.mvc.vista.AnimatronicoSprite;
 import org.fnafworld.mvc.vista.PanelFondoBatalla;
+import org.fnafworld.mvc.vista.FrameSimuladorRed;
 import org.fnafworld.sonido.AudioManager;
 
 public class MVCWorld {
 
     public static void main(String[] args) {
-        AudioManager a = new AudioManager();
-        a.loadMusic("/musica/BossStoneCold.wav");
-        a.playMusicLoop();
+        AudioManager audioManager = new AudioManager();
+        audioManager.loadMusic("/musica/BossStoneCold.wav");
+        audioManager.playMusicLoop();
         
-        List<AnimatronicoSprite> animatronicosVisuales = new ArrayList<>();
-        animatronicosVisuales.add(new AnimatronicoSprite("Freddy", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
-        animatronicosVisuales.add(new AnimatronicoSprite("Bonnie", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
-        animatronicosVisuales.add(new AnimatronicoSprite("Chica", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
-        animatronicosVisuales.add(new AnimatronicoSprite("Foxy", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
-        animatronicosVisuales.add(new AnimatronicoSprite("WitheredFreddy", 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40));
-        animatronicosVisuales.add(new AnimatronicoSprite("WitheredBonnie", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
-        animatronicosVisuales.add(new AnimatronicoSprite("WitheredChica", 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40));
-        animatronicosVisuales.add(new AnimatronicoSprite("WitheredFoxy", 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40));
-        animatronicosVisuales.add(new AnimatronicoSprite("NightmareFreddy", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
-        animatronicosVisuales.add(new AnimatronicoSprite("NightmareBonnie", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
-        animatronicosVisuales.add(new AnimatronicoSprite("NightmareChica", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 12, 2, 40, 40));
-        animatronicosVisuales.add(new AnimatronicoSprite("NightmareFoxy", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 12, 2, 40, 40));
-        animatronicosVisuales.add(new AnimatronicoSprite("ToyFreddy", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
-        animatronicosVisuales.add(new AnimatronicoSprite("ToyBonnie", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
-        animatronicosVisuales.add(new AnimatronicoSprite("ToyChica", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
-        animatronicosVisuales.add(new AnimatronicoSprite("Mangle", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        List<AnimatronicoSprite> animatronicosVisuales = cargarSpritesMock();
 
+        IFachadaJuego fachadaDominio = new FachadaJuego(null);
+        
+        ModeloJuego modelo = new ModeloJuego(fachadaDominio);
+        ControlJuego control = new ControlJuego(modelo);
+        
+        PanelFondoBatalla fondoBatallaShared = new PanelFondoBatalla("/escenarios/valle.png", animatronicosVisuales, modelo);
+        
+        List<JugadorDTO> listaMockJugadores = generarMockJugadores();
+
+        SwingUtilities.invokeLater(() -> {
+            FrameJuego framePrincipal = new FrameJuego(audioManager, fondoBatallaShared, control, modelo);
+            framePrincipal.setVisible(true);
+            
+            FrameSimuladorRed simuladorRemoto = new FrameSimuladorRed(modelo, control);
+            simuladorRemoto.setVisible(true);
+            
+            control.arrancarBatalla(listaMockJugadores);
+        });
+    }
+
+    private static List<AnimatronicoSprite> cargarSpritesMock() {
+        List<AnimatronicoSprite> lista = new ArrayList<>();
+        lista.add(new AnimatronicoSprite("Freddy", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("Bonnie", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("Chica", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("Foxy", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("WitheredFreddy", 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("WitheredBonnie", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("WitheredChica", 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("WitheredFoxy", 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("NightmareFreddy", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("NightmareBonnie", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("NightmareChica", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 12, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("NightmareFoxy", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 12, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("ToyFreddy", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("ToyBonnie", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("ToyChica", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("Mangle", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        return lista;
+    }
+
+    private static List<JugadorDTO> generarMockJugadores() {
         HabilidadDTO[] habFreddy = {
             new HabilidadDTO(35, TipoHabilidad.MicToss, "Lanza el microfono causando daño moderado a un enemigo individual."),
             new HabilidadDTO(50, TipoHabilidad.PizzaWheel, "Invoca una lluvia masiva de pizzas rodantes que daña en area al equipo rival."),
@@ -69,7 +98,7 @@ public class MVCWorld {
             new HabilidadDTO(60, TipoHabilidad.PizzaWheel2, "Una version mejorada que invoca multiples pizzas gigantes que destruyen defensas enemigas.")
         };
         HabilidadDTO[] habWBonnie = {
-            new HabilidadDTO(55, TipoHabilidad.Bite2, "Una mordida potente y destructiva que rompe armaduras e inflige alto daño."),
+            new HabilidadDTO(55, TipoHabilidad.Bite2, "Una brahmica potente y destructiva que rompe armaduras e inflige alto daño."),
             new HabilidadDTO(65, TipoHabilidad.EyeBeam, "Dispara lasers de energia desde sus ojos directo a las lineas enemigas."),
             new HabilidadDTO(0, TipoHabilidad.Unscrew, "Tiene una probabilidad del 30% de desmantelar y eliminar instantaneamente a un enemigo.")
         };
@@ -160,13 +189,6 @@ public class MVCWorld {
         listaMockJugadores.add(new JugadorDTO("2", "Lagarto_Rojo2", "/avatars/mondongo.jpg", grupoJ3, false, Equipo.Rojo));
         listaMockJugadores.add(new JugadorDTO("3", "Slayer_Blue2", "/avatars/mondongo.jpg", grupoJ4, false, Equipo.Azul));
         
-        ModeloJuego modelo = new ModeloJuego();
-        ControlJuego control = new ControlJuego(modelo);
-        PanelFondoBatalla fondoBatalla = new PanelFondoBatalla("/escenarios/valle.png", animatronicosVisuales);
-        
-        SwingUtilities.invokeLater(() -> {
-            FrameJuego frame = new FrameJuego(a, fondoBatalla, control, modelo);
-            control.arrancarBatalla(listaMockJugadores);
-        });
+        return listaMockJugadores;
     }
 }

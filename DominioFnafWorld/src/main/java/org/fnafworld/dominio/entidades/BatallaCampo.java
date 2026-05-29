@@ -170,10 +170,19 @@ public class BatallaCampo {
             }
         }
 
+        List<JugadorDTO> jugadoresDTO = new ArrayList<>();
+        if (jugadores != null) {
+            for (Jugador jugador : jugadores) {
+                if (jugador != null) {
+                    jugadoresDTO.add(convertirJugadorADTO(jugador));
+                }
+            }
+        }
+
         JugadorDTO ganadorDTO = ganador != null ? convertirJugadorADTO(ganador) : null;
         String idJugadorTurno = jugadorActual != null ? jugadorActual.getId() : null;
 
-        return new ResultadoAtaqueDTO(atacanteDTO, afectadosDTO, idJugadorTurno, ganadorDTO);
+        return new ResultadoAtaqueDTO(atacanteDTO, afectadosDTO, jugadoresDTO, idJugadorTurno, ganadorDTO);
     }
     
     private JugadorDTO convertirJugadorADTO(Jugador jugador) {

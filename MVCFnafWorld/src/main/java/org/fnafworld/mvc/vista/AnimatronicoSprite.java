@@ -155,6 +155,13 @@ public class AnimatronicoSprite {
         this.esDerrotado = true;
     }
 
+    public void marcarComoVivo() {
+        if (esDerrotado) {
+            this.esDerrotado = false;
+            estadoQuieto();
+        }
+    }
+
     public void setInvertido(boolean invertido) { this.invertido = invertido; }
     public void setBounds(int x, int y) { this.posX = x; this.posY = y; }
     public int getAncho1() { return ancho1; }

@@ -9,8 +9,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -27,6 +29,8 @@ public class PanelAccionesBatalla extends JPanel {
     private final JTextArea txtDescripcion;
     private final JLabel lblTituloHabilidad;
     private final JButton[] botones;
+    private final Runnable[] accionesHabilidad;
+    private final MouseListener[] listenersHover;
 
     public PanelAccionesBatalla() {
         this.setPreferredSize(new Dimension(1200, 150));
@@ -43,6 +47,8 @@ public class PanelAccionesBatalla extends JPanel {
         contenedorBotones.setPreferredSize(new Dimension(600, 120));
 
         botones = new JButton[3];
+        accionesHabilidad = new Runnable[3];
+        listenersHover = new MouseListener[3];
         for (int i = 0; i < 3; i++) {
             botones[i] = crearBotonBonito();
             contenedorBotones.add(botones[i]);
@@ -86,6 +92,12 @@ public class PanelAccionesBatalla extends JPanel {
         return btn;
     }
 
+    public void setAccionHabilidad(int indice, Runnable accion) {
+        if (indice >= 0 && indice < accionesHabilidad.length) {
+            accionesHabilidad[indice] = accion;
+        }
+    }
+
     public void actualizarHabilidades(HabilidadDTO[] habilidades) {
         if (habilidades == null || habilidades.length < 3) {
             deshabilitarPanel();
@@ -95,17 +107,23 @@ public class PanelAccionesBatalla extends JPanel {
         for (int i = 0; i < 3; i++) {
             HabilidadDTO hab = habilidades[i];
             JButton btn = botones[i];
+            final int indice = i;
+
+            limpiarInteraccionesBoton(indice);
+            accionesHabilidad[indice] = null;
+
+            if (hab == null) {
+                btn.setText("-");
+                btn.setEnabled(false);
+                continue;
+            }
             
             btn.setText(hab.getTipo().name());
             btn.setEnabled(true);
             btn.setBackground(new Color(40, 70, 120));
             btn.setBorder(BorderFactory.createLineBorder(new Color(70, 110, 180), 2));
 
-            for (java.awt.event.MouseListener ml : btn.getMouseListeners()) {
-                btn.removeMouseListener(ml);
-            }
-
-            btn.addMouseListener(new MouseAdapter() {
+            listenersHover[indice] = new MouseAdapter() {
                 @Override
                 public void mouseEntered(MouseEvent e) {
                     if (btn.isEnabled()) {
@@ -121,19 +139,38 @@ public class PanelAccionesBatalla extends JPanel {
                         btn.setBackground(new Color(40, 70, 120));
                     }
                 }
-            });
+            };
+            btn.addMouseListener(listenersHover[indice]);
+            btn.addActionListener(e -> ejecutarAccionHabilidad(indice));
+        }
+    }
+
+    private void ejecutarAccionHabilidad(int indice) {
+        if (indice >= 0 && indice < accionesHabilidad.length && accionesHabilidad[indice] != null) {
+            accionesHabilidad[indice].run();
+        }
+    }
+
+    private void limpiarInteraccionesBoton(int indice) {
+        JButton btn = botones[indice];
+        if (listenersHover[indice] != null) {
+            btn.removeMouseListener(listenersHover[indice]);
+            listenersHover[indice] = null;
+        }
+        for (ActionListener al : btn.getActionListeners()) {
+            btn.removeActionListener(al);
         }
     }
 
     private void deshabilitarPanel() {
-        for (JButton btn : botones) {
+        for (int i = 0; i < botones.length; i++) {
+            JButton btn = botones[i];
+            limpiarInteraccionesBoton(i);
+            accionesHabilidad[i] = null;
             btn.setText("-");
             btn.setEnabled(false);
             btn.setBackground(new Color(40, 40, 45));
             btn.setBorder(BorderFactory.createLineBorder(new Color(60, 60, 65), 2));
-            for (java.awt.event.MouseListener ml : btn.getMouseListeners()) {
-                btn.removeMouseListener(ml);
-            }
         }
         if (lblTituloHabilidad != null && txtDescripcion != null) {
             lblTituloHabilidad.setText("ESPERANDO TURNO");

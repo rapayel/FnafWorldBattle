@@ -12,6 +12,7 @@ import java.util.List;
 public class ResultadoAtaqueDTO {
     private final ParticipanteDTO atacante;
     private final List<ParticipanteDTO> afectados;
+    private final List<JugadorDTO> jugadores;
     private final String idJugadorTurnoActual;
     private final JugadorDTO ganador;
  
@@ -19,8 +20,17 @@ public class ResultadoAtaqueDTO {
                                List<ParticipanteDTO> afectados,
                                String idJugadorTurnoActual,
                                JugadorDTO ganador) {
+        this(atacante, afectados, null, idJugadorTurnoActual, ganador);
+    }
+
+    public ResultadoAtaqueDTO(ParticipanteDTO atacante,
+                               List<ParticipanteDTO> afectados,
+                               List<JugadorDTO> jugadores,
+                               String idJugadorTurnoActual,
+                               JugadorDTO ganador) {
         this.atacante = atacante;
         this.afectados = afectados;
+        this.jugadores = jugadores;
         this.idJugadorTurnoActual = idJugadorTurnoActual;
         this.ganador = ganador;
     }
@@ -31,6 +41,10 @@ public class ResultadoAtaqueDTO {
  
     public List<ParticipanteDTO> getAfectados() {
         return afectados;
+    }
+
+    public List<JugadorDTO> getJugadores() {
+        return jugadores;
     }
  
     public String getIdJugadorTurnoActual() {

@@ -9,30 +9,30 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.List;
 import javax.swing.JFrame;
+import org.fnafworld.Equipo;
 import org.fnafworld.dtos.AnimatronicoDTO;
+import org.fnafworld.dtos.HabilidadDTO;
 import org.fnafworld.dtos.JugadorDTO;
-import org.fnafworld.interfaces.Observador;
 import org.fnafworld.mvc.vista.PanelAccionesBatalla;
 import org.fnafworld.mvc.vista.PanelEstadisticasEquipo;
 import org.fnafworld.mvc.vista.PanelFondoBatalla;
 import org.fnafworld.sonido.AudioManager;
-/**
- * 
- * @author lagar
- */
-public class FrameJuego extends JFrame implements Observador {
+
+public class FrameJuego extends JFrame implements ModeloJuego.Observador {
 
     private PanelFondoBatalla fondoBatalla;
     private PanelEstadisticasEquipo panelIzquierdo;
     private PanelEstadisticasEquipo panelDerecho;
     private PanelAccionesBatalla panelAcciones; 
     private ControlJuego control;
+    private ModeloJuego modelo;
 
     public FrameJuego(AudioManager audio, PanelFondoBatalla fondoBatalla, ControlJuego control, ModeloJuego modelo) {
         this.fondoBatalla = fondoBatalla;
         this.control = control;
+        this.modelo = modelo;
         
-        modelo.registrarObservador(this);
+        this.modelo.registrarObservador(this);
         Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/iconos/iconojuego.png"));
         setIconImage(icono);
         this.setTitle("FNAF World - Modo Batalla");
@@ -49,17 +49,14 @@ public class FrameJuego extends JFrame implements Observador {
         this.add(panelAcciones, BorderLayout.SOUTH); 
 
         this.pack();
-        
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setResizable(false); 
-        
         this.setLocationRelativeTo(null);
-        this.setVisible(true);
     }
 
     @Override
-    public void Actualizar(ModeloJuego contexto) {
-        List<JugadorDTO> listaJugadores = contexto.getJugadores();
+    public void mapearActualizacion() {
+        List<JugadorDTO> listaJugadores = modelo.getJugadores();
         if (listaJugadores != null) {
             mapearEquiposHaciaPaneles(listaJugadores);
             buscarYEnviarHabilidadesTurno(listaJugadores); 
@@ -72,9 +69,9 @@ public class FrameJuego extends JFrame implements Observador {
 
         for (int i = 0; i < todosLosJugadores.size(); i++) {
             JugadorDTO j = todosLosJugadores.get(i);
-            if (i == 0 || i == 2) {
+            if (j.getEquipo() == Equipo.Rojo) {
                 equipoRojo.add(j);
-            } else if (i == 1 || i == 3) {
+            } else if (j.getEquipo() == Equipo.Azul) {
                 equipoAzul.add(j);
             }
         }
@@ -87,13 +84,35 @@ public class FrameJuego extends JFrame implements Observador {
         for (JugadorDTO jugador : todosLosJugadores) {
             if (jugador.getGrupo() != null) {
                 for (AnimatronicoDTO anim : jugador.getGrupo()) {
-                    if (anim.isTurnoAnimatronico()) {
+                    if ("0".equals(jugador.getId()) && anim.isTurnoAnimatronico()) {
                         panelAcciones.actualizarHabilidades(anim.getHabilidades());
+                        conectarHabilidadesTurno(jugador, anim);
                         return; 
                     }
                 }
             }
         }
         panelAcciones.actualizarHabilidades(null);
+    }
+
+    private void conectarHabilidadesTurno(JugadorDTO jugador, AnimatronicoDTO anim) {
+        HabilidadDTO[] habilidades = anim.getHabilidades();
+        if (habilidades == null) {
+            return;
+        }
+
+        for (int i = 0; i < habilidades.length; i++) {
+            final int indice = i;
+            final HabilidadDTO habilidad = habilidades[i];
+            if (habilidad != null) {
+                panelAcciones.setAccionHabilidad(indice, () ->
+                        control.procesarSeleccionHabilidad(
+                                jugador.getId(),
+                                anim.getIdAnimatronico(),
+                                habilidad.getTipo()
+                        )
+                );
+            }
+        }
     }
 }

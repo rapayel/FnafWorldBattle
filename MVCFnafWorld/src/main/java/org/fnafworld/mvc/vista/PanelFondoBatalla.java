@@ -14,19 +14,27 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-/**
- * 
- * @author lagar
- */
-public class PanelFondoBatalla extends JPanel {
+import org.fnafworld.dtos.AnimatronicoDTO;
+import org.fnafworld.dtos.JugadorDTO;
+import org.fnafworld.dtos.ParticipanteDTO;
+import org.fnafworld.dtos.ResultadoAtaqueDTO;
+import org.fnafworld.mvc.ModeloJuego;
+
+public class PanelFondoBatalla extends JPanel implements ModeloJuego.Observador {
     private BufferedImage fondo;
     private String urlFondo;
     private List<AnimatronicoSprite> animatronicos;
     private Timer timerMaestro;
+    private ModeloJuego modelo;
     
-    public PanelFondoBatalla(String urlFondo, List<AnimatronicoSprite> animatronicos) {
+    public PanelFondoBatalla(String urlFondo, List<AnimatronicoSprite> animatronicos, ModeloJuego modelo) {
         this.urlFondo = urlFondo;
         this.animatronicos = animatronicos;
+        this.modelo = modelo;
+        
+        if (modelo != null) {
+            modelo.registrarObservador(this);
+        }
         
         setDoubleBuffered(true);
         cargarFondo(this.urlFondo);
@@ -91,6 +99,60 @@ public class PanelFondoBatalla extends JPanel {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    @Override
+    public void mapearActualizacion() {
+        sincronizarSpritesConModelo();
+        repaint();
+    }
+
+    private void sincronizarSpritesConModelo() {
+        if (modelo == null || modelo.getJugadores() == null) {
+            return;
+        }
+
+        for (JugadorDTO jugador : modelo.getJugadores()) {
+            if (jugador == null || jugador.getGrupo() == null) {
+                continue;
+            }
+            for (AnimatronicoDTO anim : jugador.getGrupo()) {
+                AnimatronicoSprite sprite = buscarSprite(anim);
+                if (sprite == null) {
+                    continue;
+                }
+                if (anim.isIsVivo()) {
+                    sprite.marcarComoVivo();
+                } else {
+                    sprite.marcarComoDerrotado();
+                }
+            }
+        }
+
+        ResultadoAtaqueDTO estado = modelo.getEstadoActual();
+        if (estado == null) {
+            return;
+        }
+
+        ParticipanteDTO atacante = estado.getAtacante();
+        if (atacante != null) {
+            AnimatronicoSprite spriteAtacante = buscarSprite(atacante.getAnimatronico());
+            if (spriteAtacante != null && atacante.getAnimatronico() != null && atacante.getAnimatronico().isIsVivo()) {
+                spriteAtacante.estadoAtacar();
+            }
+        }
+    }
+
+    private AnimatronicoSprite buscarSprite(AnimatronicoDTO animatronico) {
+        if (animatronico == null || animatronicos == null) {
+            return null;
+        }
+        for (AnimatronicoSprite sprite : animatronicos) {
+            if (sprite != null && animatronico.getIdAnimatronico().equals(sprite.getNombre())) {
+                return sprite;
+            }
+        }
+        return null;
     }
     
     @Override

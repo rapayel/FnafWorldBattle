@@ -5,20 +5,25 @@
 package org.fnafworld.mvc;
 
 import java.util.List;
-import org.fnafworld.dtos.JugadorDTO;
-import org.fnafworld.interfaces.IModeloAccion;
-/**
- * 
- * @author lagar
- */
+
 public class ControlJuego {
-    private IModeloAccion iModeloAccion;
 
-    public ControlJuego(IModeloAccion iModeloAccion) {
-        this.iModeloAccion = iModeloAccion;
-    } 
+    private final ModeloJuego modelo;
 
-    public void arrancarBatalla(List<JugadorDTO> jugadores) {
-        this.iModeloAccion.inicializarPartida(jugadores);
+    public ControlJuego(ModeloJuego modelo) {
+        this.modelo = modelo;
+    }
+
+    @SuppressWarnings("rawtypes")
+    public void arrancarBatalla(List listaMockJugadores) {
+        String escenarioPorDefecto = "/escenarios/valle.png";
+        String musicaPorDefecto = "/musica/BossStoneCold.wav";
+        modelo.iniciarPartidaEnDominio(listaMockJugadores, escenarioPorDefecto, musicaPorDefecto);
+    }
+
+    public void procesarSeleccionHabilidad(String idJugador, String idAnimatronico, Object tipoHabilidadEnum) {
+        if (tipoHabilidadEnum instanceof org.fnafworld.TipoHabilidad) {
+            modelo.ejecutarAtaqueEnDominio(idJugador, idAnimatronico, (org.fnafworld.TipoHabilidad) tipoHabilidadEnum);
+        }
     }
 }
