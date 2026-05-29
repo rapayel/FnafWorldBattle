@@ -27,7 +27,7 @@ public class MVCWorld {
 
     public static void main(String[] args) {
         AudioManager audioManager = new AudioManager();
-        audioManager.loadMusic("/musica/BossStoneCold.wav");
+        audioManager.loadMusic("/musica/BossBattle.wav");
         audioManager.playMusicLoop();
         
         List<AnimatronicoSprite> animatronicosVisuales = cargarSpritesMock();
