@@ -19,7 +19,10 @@ import org.fnafworld.mvc.vista.AnimatronicoSprite;
 import org.fnafworld.mvc.vista.PanelFondoBatalla;
 import org.fnafworld.mvc.vista.FrameSimuladorRed;
 import org.fnafworld.sonido.AudioManager;
-
+/**
+ * 
+ * @author lagar
+ */
 public class MVCWorld {
 
     public static void main(String[] args) {
@@ -155,32 +158,33 @@ public class MVCWorld {
             new HabilidadDTO(0, TipoHabilidad.PrizeBall2, "Despliega una capsula de premio mayor que desata ataques aleatorios de alto rango.")
         };
 
+        // Modificados: Vida actual y total aumentadas en 1000
         AnimatronicoDTO[] grupoJ1 = {
-            new AnimatronicoDTO("Freddy", TipoAnimatronico.Freddy, true, 50, 100, 100, habFreddy, true),
-            new AnimatronicoDTO("Bonnie", TipoAnimatronico.Bonnie, false, 45, 100, 100, habBonnie, true),
-            new AnimatronicoDTO("Chica", TipoAnimatronico.Chica, false, 30, 100, 100, habChica, true),
-            new AnimatronicoDTO("Foxy", TipoAnimatronico.Foxy, false, 60, 100, 100, habFoxy, true)
+            new AnimatronicoDTO("Freddy", TipoAnimatronico.Freddy, true, 50, 1100, 1100, habFreddy, true),
+            new AnimatronicoDTO("Bonnie", TipoAnimatronico.Bonnie, false, 45, 1100, 1100, habBonnie, true),
+            new AnimatronicoDTO("Chica", TipoAnimatronico.Chica, false, 30, 1100, 1100, habChica, true),
+            new AnimatronicoDTO("Foxy", TipoAnimatronico.Foxy, false, 60, 1100, 1100, habFoxy, true)
         };
         
         AnimatronicoDTO[] grupoJ2 = {
-            new AnimatronicoDTO("WitheredFreddy", TipoAnimatronico.WitheredFreddy, false, 70, 120, 120, habWFreddy, true),
-            new AnimatronicoDTO("WitheredBonnie", TipoAnimatronico.WitheredBonnie, false, 65, 110, 110, habWBonnie, true),
-            new AnimatronicoDTO("WitheredChica", TipoAnimatronico.WitheredChica, false, 40, 120, 120, habWChica, true),
-            new AnimatronicoDTO("WitheredFoxy", TipoAnimatronico.WitheredFoxy, false, 80, 90, 90, habWFoxy, true)
+            new AnimatronicoDTO("WitheredFreddy", TipoAnimatronico.WitheredFreddy, false, 70, 1120, 1120, habWFreddy, true),
+            new AnimatronicoDTO("WitheredBonnie", TipoAnimatronico.WitheredBonnie, false, 65, 1110, 1110, habWBonnie, true),
+            new AnimatronicoDTO("WitheredChica", TipoAnimatronico.WitheredChica, false, 40, 1120, 1120, habWChica, true),
+            new AnimatronicoDTO("WitheredFoxy", TipoAnimatronico.WitheredFoxy, false, 80, 1090, 1090, habWFoxy, true)
         };
 
         AnimatronicoDTO[] grupoJ3 = {
-            new AnimatronicoDTO("NightmareFreddy", TipoAnimatronico.NightmareFreddy, false, 80, 140, 140, habNFreddy, true),
-            new AnimatronicoDTO("NightmareBonnie", TipoAnimatronico.NightmareBonnie, false, 75, 130, 130, habNBonnie, true),
-            new AnimatronicoDTO("NightmareChica", TipoAnimatronico.NightmareChica, false, 70, 135, 135, habNChica, true),
-            new AnimatronicoDTO("NightmareFoxy", TipoAnimatronico.NightmareFoxy, false, 85, 110, 110, habNFoxy, true)
+            new AnimatronicoDTO("NightmareFreddy", TipoAnimatronico.NightmareFreddy, false, 80, 1140, 1140, habNFreddy, true),
+            new AnimatronicoDTO("NightmareBonnie", TipoAnimatronico.NightmareBonnie, false, 75, 1130, 1130, habNBonnie, true),
+            new AnimatronicoDTO("NightmareChica", TipoAnimatronico.NightmareChica, false, 70, 1135, 1135, habNChica, true),
+            new AnimatronicoDTO("NightmareFoxy", TipoAnimatronico.NightmareFoxy, false, 85, 1110, 1110, habNFoxy, true)
         };
 
         AnimatronicoDTO[] grupoJ4 = {
-            new AnimatronicoDTO("ToyFreddy", TipoAnimatronico.ToyFreddy, false, 45, 90, 90, habTFreddy, true),
-            new AnimatronicoDTO("ToyBonnie", TipoAnimatronico.ToyBonnie, false, 50, 85, 85, habTBonnie, true),
-            new AnimatronicoDTO("ToyChica", TipoAnimatronico.ToyChica, false, 40, 95, 95, habTChica, true),
-            new AnimatronicoDTO("Mangle", TipoAnimatronico.Mangle, false, 55, 80, 80, habMangle, true)
+            new AnimatronicoDTO("ToyFreddy", TipoAnimatronico.ToyFreddy, false, 45, 1090, 1090, habTFreddy, true),
+            new AnimatronicoDTO("ToyBonnie", TipoAnimatronico.ToyBonnie, false, 50, 1085, 1085, habTBonnie, true),
+            new AnimatronicoDTO("ToyChica", TipoAnimatronico.ToyChica, false, 40, 1095, 1095, habTChica, true),
+            new AnimatronicoDTO("Mangle", TipoAnimatronico.Mangle, false, 55, 1080, 1080, habMangle, true)
         };
 
         List<JugadorDTO> listaMockJugadores = new ArrayList<>();
