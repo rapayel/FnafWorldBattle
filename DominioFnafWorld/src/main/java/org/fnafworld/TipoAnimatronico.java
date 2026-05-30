@@ -10,8 +10,8 @@ package org.fnafworld;
  */
 public enum TipoAnimatronico {
     Freddy, Bonnie, Chica, Foxy, GoldenFreddy, Endo01,
-    ToyFreddy, ToyBonnie, ToyChica, Mangle, WitheredFreddy, WitheredBonnie, WitheredChica, WitheredFoxy, ShadowFreddy, ShadowBonnie, Paperpals, Puppet, BB, CryingChild, Endo02, Purpleguy, JJ,
+    ToyFreddy, ToyBonnie, ToyChica, Mangle, WitheredFreddy, WitheredBonnie, WitheredChica, WitheredFoxy, ShadowFreddy, ShadowBonnie, Paperpals, Puppet, CryingChild, Endo02, Purpleguy, JJ, BalloonBoy,
     PhantomChica, PhantomFreddy, PhantomFoxy, Sprintrap, PhantomPuppet, PhantomBB, PhantomMangle,
-    NightmareFreddy, NightmareBonnie, NightmareChica, NightmareFoxy, Plushtrap, Nightmare, NightmareFredbear, NightmarePuppet, NightmareBB, JackOBonnie, JackOChica,
-    Animdude, Coffe, Endoplush, TheFan, Fredbear, FuntimeFoxy, MrChipper, SpringBonnie
+    NightmareFreddy, NightmareBonnie, NightmareChica, NightmareFoxy, Plushtrap, Nightmare, NightmareFredbear, NightmarePuppet, NightmareBB, JackOBonnie, JackOChica, 
+    Animdude, Coffe, Endoplush, TheFan, Fredbear, FuntimeFoxy, MrChipper, SpringBonnie, 
 }

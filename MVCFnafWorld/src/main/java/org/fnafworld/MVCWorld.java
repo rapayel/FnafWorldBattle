@@ -54,7 +54,8 @@ public class MVCWorld {
 
     private static List<AnimatronicoSprite> cargarSpritesMock() {
         List<AnimatronicoSprite> lista = new ArrayList<>();
-        lista.add(new AnimatronicoSprite("Freddy", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("PhantomChica", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        //lista.add(new AnimatronicoSprite("Freddy", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
         lista.add(new AnimatronicoSprite("Bonnie", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
         lista.add(new AnimatronicoSprite("Chica", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
         lista.add(new AnimatronicoSprite("Foxy", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
@@ -70,6 +71,24 @@ public class MVCWorld {
         lista.add(new AnimatronicoSprite("ToyBonnie", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
         lista.add(new AnimatronicoSprite("ToyChica", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
         lista.add(new AnimatronicoSprite("Mangle", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        /**
+         * lista.add(new AnimatronicoSprite("BalloonBoy", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("JJ", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 16, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("PhantomFreddy", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("PhantomChica", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("PhantomPuppet", 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("PhantomBB", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("PhantomFoxy", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("PhantomMangle", 2, 3, 250, 248, 12, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("ShadowFreddy", 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("Puppet", 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("GoldenFreddy", 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("Paperpals", 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("ShadowBonnie", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("Endo01", 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("Endo02", 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("EndoPlush", 2, 3, 250, 248, 12, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+         */
         return lista;
     }
 
@@ -98,53 +117,53 @@ public class MVCWorld {
         HabilidadDTO[] habWFreddy = {
             new HabilidadDTO(50, TipoHabilidad.MicToss, "Lanza el viejo microfono oxidado causando daño de impacto severo."),
             new HabilidadDTO(0, TipoHabilidad.GloomSong, "Entona un cántico deprimente que reduce el poder de ataque del equipo rival."),
-            new HabilidadDTO(60, TipoHabilidad.PizzaWheel2, "Una version mejorada que invoca multiples pizzas gigantes que destruyen defensas enemigas.")
+            new HabilidadDTO(60, TipoHabilidad.EscKey, "Una version mejorada que invoca multiples pizzas gigantes que destruyen defensas enemigas.")
         };
         HabilidadDTO[] habWBonnie = {
-            new HabilidadDTO(55, TipoHabilidad.Bite2, "Una brahmica potente y destructiva que rompe armaduras e inflige alto daño."),
-            new HabilidadDTO(65, TipoHabilidad.EyeBeam, "Dispara lasers de energia desde sus ojos directo a las lineas enemigas."),
+            new HabilidadDTO(55, TipoHabilidad.EyeBeam, "Una brahmica potente y destructiva que rompe armaduras e inflige alto daño."),
+            new HabilidadDTO(65, TipoHabilidad.PizzaWheel, "Dispara lasers de energia desde sus ojos directo a las lineas enemigas."),
             new HabilidadDTO(0, TipoHabilidad.Unscrew, "Tiene una probabilidad del 30% de desmantelar y eliminar instantaneamente a un enemigo.")
         };
         HabilidadDTO[] habWChica = {
-            new HabilidadDTO(60, TipoHabilidad.Bite2, "Ataca con sus mandibulas rotas causando graves daños de trituracion."),
-            new HabilidadDTO(0, TipoHabilidad.PartyFavors, "Dispara sorpresas festivas que dañan y curan simultaneamente."),
-            new HabilidadDTO(0, TipoHabilidad.Unscrew2, "Posee un 50% de probabilidad de desarmar y destruir a un oponente mecanico al instante.")
+            new HabilidadDTO(60, TipoHabilidad.Bite, "Ataca con sus mandibulas rotas causando graves daños de trituracion."),
+            new HabilidadDTO(0, TipoHabilidad.Cupcake, "Dispara sorpresas festivas que dañan y curan simultaneamente."),
+            new HabilidadDTO(0, TipoHabilidad.PrizeBall2, "Posee un 50% de probabilidad de desarmar y destruir a un oponente mecanico al instante.")
         };
         HabilidadDTO[] habWFoxy = {
             new HabilidadDTO(65, TipoHabilidad.Hook, "Ataque veloz con el garfio que atraviesa defensas fisicas."),
-            new HabilidadDTO(0, TipoHabilidad.Jumpscare, "Susto repentino que interrumpe los turnos y congela las barras de accion enemigas."),
+            new HabilidadDTO(0, TipoHabilidad.RainyDay, "Susto repentino que interrumpe los turnos y congela las barras de accion enemigas."),
             new HabilidadDTO(50, TipoHabilidad.HotCheese2, "Lanza una ola masiva de queso derretido hirviendo causando alto daño continuo.")
         };
 
         HabilidadDTO[] habNFreddy = {
             new HabilidadDTO(70, TipoHabilidad.Bite2, "Una mordida de pesadilla con multiples hileras de dientes afilados."),
-            new HabilidadDTO(80, TipoHabilidad.Freddles, "Suelta pequeños sirvientes que atacan freneticamente acumulando rafagas de daño."),
-            new HabilidadDTO(90, TipoHabilidad.BadPizza, "Invoca pizzas en descomposicion que envenenan e infligen gran daño de area.")
+            new HabilidadDTO(80, TipoHabilidad.Sludge, "Suelta pequeños sirvientes que atacan freneticamente acumulando rafagas de daño."),
+            new HabilidadDTO(90, TipoHabilidad.Freddles, "Invoca pizzas en descomposicion que envenenan e infligen gran daño de area.")
         };
         HabilidadDTO[] habNBonnie = {
             new HabilidadDTO(75, TipoHabilidad.Bite2, "Ataque mandibular salvaje e implacable que destroza los puntos de salud."),
-            new HabilidadDTO(0, TipoHabilidad.Jumpscare, "Un grito ensordecedor que inhabilita por completo las acciones del rival."),
-            new HabilidadDTO(85, TipoHabilidad.Buzzsaw, "Lanza una sierra circular giratoria que rebana brutalmente al objetivo.")
+            new HabilidadDTO(0, TipoHabilidad.RainyDay2, "Un grito ensordecedor que inhabilita por completo las acciones del rival."),
+            new HabilidadDTO(85, TipoHabilidad.PizzaWheel2, "Lanza una sierra circular giratoria que rebana brutalmente al objetivo.")
         };
         HabilidadDTO[] habNChica = {
             new HabilidadDTO(70, TipoHabilidad.Bite2, "Tritura al enemigo causando un traumatismo critico severo."),
-            new HabilidadDTO(90, TipoHabilidad.BadPizza, "Lanza una pizza envenenada que arruina el estado y vitalidad de la escuadra enemiga."),
-            new HabilidadDTO(100, TipoHabilidad.JackOBomb, "Lanza una calabaza explosiva que estalla causando daño de fuego masivo.")
+            new HabilidadDTO(90, TipoHabilidad.Waterhose, "Lanza una pizza envenenada que arruina el estado y vitalidad de la escuadra enemiga."),
+            new HabilidadDTO(100, TipoHabilidad.BadPizza, "Lanza una calabaza explosiva que estalla causando daño de fuego masivo.")
         };
         HabilidadDTO[] habNFoxy = {
             new HabilidadDTO(80, TipoHabilidad.Bite2, "Abalanzamiento feroz con colmillos expuestos infligiendo daño masivo."),
-            new HabilidadDTO(0, TipoHabilidad.Jumpscare, "Aterroriza a las filas enemigas impidiendo su movilidad durante un ciclo."),
+            new HabilidadDTO(0, TipoHabilidad.Unscrew2, "Aterroriza a las filas enemigas impidiendo su movilidad durante un ciclo."),
             new HabilidadDTO(95, TipoHabilidad.HotCheese2, "Inunda el campo de batalla con magma quesero infligiendo un daño por segundo devastador.")
         };
 
         HabilidadDTO[] habTFreddy = {
             new HabilidadDTO(30, TipoHabilidad.MicToss, "Lanza el microfono de plastico infligiendo daño basico constante."),
             new HabilidadDTO(0, TipoHabilidad.PartyFavors, "Dispara confeti curativo que otorga soporte leve al equipo."),
-            new HabilidadDTO(40, TipoHabilidad.PizzaWheel, "Despliega una rueda de pizzas medianas para golpear de forma grupal.")
+            new HabilidadDTO(40, TipoHabilidad.SpeedSong, "Aumenta fuerza y armadura en +45 a 1 aliado aleatorio durante 8 turnos.")
         };
         HabilidadDTO[] habTBonnie = {
             new HabilidadDTO(35, TipoHabilidad.BashJam, "Interpreta una nota estruendosa desestabilizando al oponente."),
-            new HabilidadDTO(0, TipoHabilidad.HappyJam2, "Toca una cancion sumamente alegre que sana de golpe grandes cantidades de vida."),
+            new HabilidadDTO(0, TipoHabilidad.Munchies, "Daño pasivo de 14/turno a TODOS los enemigos y 4 aliados aleatorios."),
             new HabilidadDTO(0, TipoHabilidad.PrizeBall, "Invoca una esfera sorpresa que ejecuta una habilidad aleatoria de nivel bajo.")
         };
         HabilidadDTO[] habTChica = {
@@ -155,12 +174,11 @@ public class MVCWorld {
         HabilidadDTO[] habMangle = {
             new HabilidadDTO(40, TipoHabilidad.Bite, "Ataque directo utilizando sus piezas desarmadas para morder."),
             new HabilidadDTO(0, TipoHabilidad.Poppers, "Coloca pequeñas minas sorpresa que explotan cuando un enemigo intenta atacar."),
-            new HabilidadDTO(0, TipoHabilidad.PrizeBall2, "Despliega una capsula de premio mayor que desata ataques aleatorios de alto rango.")
+            new HabilidadDTO(0, TipoHabilidad.PrizeBall, "Despliega una capsula de premio menor que desata ataques aleatorios de menor rango.")
         };
 
-        // Modificados: Vida actual y total aumentadas en 1000
         AnimatronicoDTO[] grupoJ1 = {
-            new AnimatronicoDTO("Freddy", TipoAnimatronico.Freddy, true, 50, 1100, 1100, habFreddy, true),
+            new AnimatronicoDTO("PhantoChica", TipoAnimatronico.PhantomChica, true, 50, 1100, 1100, habFreddy, true),
             new AnimatronicoDTO("Bonnie", TipoAnimatronico.Bonnie, false, 45, 1100, 1100, habBonnie, true),
             new AnimatronicoDTO("Chica", TipoAnimatronico.Chica, false, 30, 1100, 1100, habChica, true),
             new AnimatronicoDTO("Foxy", TipoAnimatronico.Foxy, false, 60, 1100, 1100, habFoxy, true)
@@ -186,12 +204,12 @@ public class MVCWorld {
             new AnimatronicoDTO("ToyChica", TipoAnimatronico.ToyChica, false, 40, 1095, 1095, habTChica, true),
             new AnimatronicoDTO("Mangle", TipoAnimatronico.Mangle, false, 55, 1080, 1080, habMangle, true)
         };
-
+        
         List<JugadorDTO> listaMockJugadores = new ArrayList<>();
-        listaMockJugadores.add(new JugadorDTO("0", "Lagarto_Rojo1", "/avatars/mondongo.jpg", grupoJ1, true, Equipo.Rojo));
-        listaMockJugadores.add(new JugadorDTO("1", "Slayer_Blue1", "/avatars/mondongo.jpg", grupoJ2, false, Equipo.Azul));
-        listaMockJugadores.add(new JugadorDTO("2", "Lagarto_Rojo2", "/avatars/mondongo.jpg", grupoJ3, false, Equipo.Rojo));
-        listaMockJugadores.add(new JugadorDTO("3", "Slayer_Blue2", "/avatars/mondongo.jpg", grupoJ4, false, Equipo.Azul));
+        listaMockJugadores.add(new JugadorDTO("0", "Mondongo", "/avatars/mondongo.jpg", grupoJ1, true, Equipo.Rojo));
+        listaMockJugadores.add(new JugadorDTO("1", "El gato", "/avatars/gatomojado.jpg", grupoJ2, false, Equipo.Azul));
+        listaMockJugadores.add(new JugadorDTO("2", "ohhhh", "/avatars/oruga.jpg", grupoJ3, false, Equipo.Rojo));
+        listaMockJugadores.add(new JugadorDTO("3", "pablo", "/avatars/pabloncho.jpg", grupoJ4, false, Equipo.Azul));
         
         return listaMockJugadores;
     }
