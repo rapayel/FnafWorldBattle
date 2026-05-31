@@ -100,7 +100,7 @@ public class AnimatronicoTestFrame extends JFrame {
             btnAtaque.setEnabled(!activo);
         });
 
-        this.setSize(450, 480);
+        this.setSize(450, 600);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
     }

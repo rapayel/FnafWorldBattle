@@ -25,7 +25,6 @@ public class AnimatronicoTestMain {
     private static List<AnimatronicoSprite> cargarSpritesMock() {
         List<AnimatronicoSprite> lista = new ArrayList<>();
         
-        // --- ANIMATRONICOS ANTERIORES / DOCUMENTADOS ACTIVADOS ---
         lista.add(new AnimatronicoSprite("Freddy", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
         lista.add(new AnimatronicoSprite("Bonnie", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
         lista.add(new AnimatronicoSprite("Chica", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
@@ -42,8 +41,6 @@ public class AnimatronicoTestMain {
         lista.add(new AnimatronicoSprite("ToyBonnie", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
         lista.add(new AnimatronicoSprite("ToyChica", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
         lista.add(new AnimatronicoSprite("Mangle", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
-
-        // --- NUEVOS ANIMATRONICOS ---
         lista.add(new AnimatronicoSprite("BalloonBoy", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
         lista.add(new AnimatronicoSprite("JJ", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 16, 2, 40, 40));
         lista.add(new AnimatronicoSprite("PhantomFreddy", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
@@ -59,8 +56,11 @@ public class AnimatronicoTestMain {
         lista.add(new AnimatronicoSprite("ShadowBonnie", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
         lista.add(new AnimatronicoSprite("Endo01", 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40));
         lista.add(new AnimatronicoSprite("Endo02", 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40));
-        lista.add(new AnimatronicoSprite("EndoPlush", 2, 3, 250, 248, 12, 2, 2, 253, 250, 248, 11, 2, 40, 40));
-        
+        lista.add(new AnimatronicoSprite("Endoplush", 2, 3, 250, 248, 12, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("Animdude", 2, 0, 250, 250, 10, 2, 2, 0, 250, 248, 10, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("Coffee", 4, 4, 199, 147, 9, 4, 4, 157, 197, 147, 12, 6, 40, 40));
+        lista.add(new AnimatronicoSprite("CryingChild", 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 12, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("Fredbear", 2, 3, 250, 298, 10, 2, 2, 303, 250, 298, 11, 2, 40, 40));
         return lista;
     }
 }
