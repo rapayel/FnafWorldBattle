@@ -19,7 +19,6 @@ import org.fnafworld.mvc.vista.AnimatronicoSprite;
 import org.fnafworld.mvc.vista.PanelFondoBatalla;
 import org.fnafworld.mvc.vista.FrameSimuladorRed;
 import org.fnafworld.sonido.AudioManager;
-
 /**
  * * @author lagar
  */
@@ -27,7 +26,7 @@ public class MVCWorld {
 
     public static void main(String[] args) {
         AudioManager audioManager = new AudioManager();
-        audioManager.loadMusic("/musica/BossBattle.wav");
+        audioManager.loadMusic("/musica/BossStoneCold.wav");
         audioManager.playMusicLoop();
         
         List<AnimatronicoSprite> animatronicosVisuales = cargarSpritesMock();
@@ -55,7 +54,25 @@ public class MVCWorld {
     private static List<AnimatronicoSprite> cargarSpritesMock() {
         List<AnimatronicoSprite> lista = new ArrayList<>();
         
-        // --- ANIMATRONICOS ANTERIORES COMENTADOS ---
+        lista.add(new AnimatronicoSprite("Endoplush", 2, 3, 250, 248, 12, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("PhantomPuppet", 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("ShadowFreddy", 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("ShadowBonnie", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        
+        lista.add(new AnimatronicoSprite("JJ", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 16, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("PhantomBB", 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("Puppet", 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("Endo01", 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        
+        lista.add(new AnimatronicoSprite("PhantomFreddy", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("PhantomFoxy", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("GoldenFreddy", 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("Endo02", 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        
+        lista.add(new AnimatronicoSprite("PhantomChica", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("PhantomMangle", 2, 3, 250, 248, 12, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("Paperpals", 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("BalloonBoy", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
         /*
         lista.add(new AnimatronicoSprite("Freddy", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
         lista.add(new AnimatronicoSprite("Bonnie", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
@@ -73,9 +90,7 @@ public class MVCWorld {
         lista.add(new AnimatronicoSprite("ToyBonnie", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
         lista.add(new AnimatronicoSprite("ToyChica", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
         lista.add(new AnimatronicoSprite("Mangle", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
-        */
-
-        // --- NUEVOS ANIMATRONICOS ACTIVADOS ---
+        
         lista.add(new AnimatronicoSprite("BalloonBoy", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
         lista.add(new AnimatronicoSprite("JJ", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 16, 2, 40, 40));
         lista.add(new AnimatronicoSprite("PhantomFreddy", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
@@ -91,14 +106,12 @@ public class MVCWorld {
         lista.add(new AnimatronicoSprite("ShadowBonnie", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
         lista.add(new AnimatronicoSprite("Endo01", 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40));
         lista.add(new AnimatronicoSprite("Endo02", 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40));
-        lista.add(new AnimatronicoSprite("EndoPlush", 2, 3, 250, 248, 12, 2, 2, 253, 250, 248, 11, 2, 40, 40));
-        
+        lista.add(new AnimatronicoSprite("Endoplush", 2, 3, 250, 248, 12, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        */
         return lista;
     }
 
     private static List<JugadorDTO> generarMockJugadores() {
-        // --- HABILIDADES ANTERIORES COMENTADAS ---
-        /*
         HabilidadDTO[] habFreddy = {
             new HabilidadDTO(35, TipoHabilidad.MicToss, "Lanza el microfono causando daño moderado a un enemigo individual."),
             new HabilidadDTO(50, TipoHabilidad.PizzaWheel, "Invoca una lluvia masiva de pizzas rodantes que daña en area al equipo rival."),
@@ -119,6 +132,7 @@ public class MVCWorld {
             new HabilidadDTO(0, TipoHabilidad.Jumpscare, "Lanza un grito aterrador que paraliza temporalmente las acciones enemigas."),
             new HabilidadDTO(40, TipoHabilidad.HotCheese, "Cubre el piso con queso hirviendo que causa daño por quemaduras en el tiempo.")
         };
+
         HabilidadDTO[] habWFreddy = {
             new HabilidadDTO(50, TipoHabilidad.MicToss, "Lanza el viejo microfono oxidado causando daño de impacto severo."),
             new HabilidadDTO(0, TipoHabilidad.GloomSong, "Entona un cántico deprimente que reduce el poder de ataque del equipo rival."),
@@ -139,6 +153,7 @@ public class MVCWorld {
             new HabilidadDTO(0, TipoHabilidad.RainyDay, "Susto repentino que interrumpe los turnos y congela las barras de accion enemigas."),
             new HabilidadDTO(50, TipoHabilidad.HotCheese2, "Lanza una ola masiva de queso derretido hirviendo causando alto daño continuo.")
         };
+
         HabilidadDTO[] habNFreddy = {
             new HabilidadDTO(70, TipoHabilidad.Bite2, "Una mordida de pesadilla con multiples hileras de dientes afilados."),
             new HabilidadDTO(80, TipoHabilidad.Sludge, "Suelta pequeños sirvientes que atacan freneticamente acumulando rafagas de daño."),
@@ -159,6 +174,7 @@ public class MVCWorld {
             new HabilidadDTO(0, TipoHabilidad.Unscrew2, "Aterroriza a las filas enemigas impidiendo su movilidad durante un ciclo."),
             new HabilidadDTO(95, TipoHabilidad.HotCheese2, "Inunda el campo de batalla con magma quesero infligiendo un daño por segundo devastador.")
         };
+
         HabilidadDTO[] habTFreddy = {
             new HabilidadDTO(30, TipoHabilidad.MicToss, "Lanza el microfono de plastico infligiendo daño basico constante."),
             new HabilidadDTO(0, TipoHabilidad.PartyFavors, "Dispara confeti curativo que otorga soporte leve al equipo."),
@@ -179,9 +195,7 @@ public class MVCWorld {
             new HabilidadDTO(0, TipoHabilidad.Poppers, "Coloca pequeñas minas sorpresa que explotan cuando un enemigo intenta atacar."),
             new HabilidadDTO(0, TipoHabilidad.PrizeBall, "Despliega una capsula de premio menor que desata ataques aleatorios de menor rango.")
         };
-        */
-
-        // --- NUEVAS HABILIDADES PARA NUEVOS ANIMATRONICOS ---
+        
         HabilidadDTO[] habBB = {
             new HabilidadDTO(25, TipoHabilidad.Balloons, "Invoca globos que dañan objetivos múltiples."),
             new HabilidadDTO(35, TipoHabilidad.HotCheese, "Derrama queso caliente para causar daño de quemadura."),
@@ -262,63 +276,35 @@ public class MVCWorld {
             new HabilidadDTO(0, TipoHabilidad.MimicBall, "Duplica instantáneamente cada habilidad ofensiva ejecutada."),
             new HabilidadDTO(0, TipoHabilidad.GiftBoxes, "Otorga cajas de resurrección automática a todo el equipo.")
         };
-
-        // --- GRUPOS DE JUGADORES ORIGINALES COMENTADOS (DOCUMENTACIÓN) ---
-        /*
+        
         AnimatronicoDTO[] grupoJ1 = {
-            new AnimatronicoDTO("Freddy", TipoAnimatronico.Freddy, true, 50, 1100, 1100, habFreddy, true),
-            new AnimatronicoDTO("Bonnie", TipoAnimatronico.Bonnie, false, 45, 1100, 1100, habBonnie, true),
-            new AnimatronicoDTO("Chica", TipoAnimatronico.Chica, false, 30, 1100, 1100, habChica, true),
-            new AnimatronicoDTO("Foxy", TipoAnimatronico.Foxy, false, 60, 1100, 1100, habFoxy, true)
-        };
-        AnimatronicoDTO[] grupoJ2 = {
-            new AnimatronicoDTO("WitheredFreddy", TipoAnimatronico.WitheredFreddy, false, 70, 1120, 1120, habWFreddy, true),
-            new AnimatronicoDTO("WitheredBonnie", TipoAnimatronico.WitheredBonnie, false, 65, 1110, 1110, habWBonnie, true),
-            new AnimatronicoDTO("WitheredChica", TipoAnimatronico.WitheredChica, false, 40, 1120, 1120, habWChica, true),
-            new AnimatronicoDTO("WitheredFoxy", TipoAnimatronico.WitheredFoxy, false, 80, 1090, 1090, habWFoxy, true)
-        };
-        AnimatronicoDTO[] grupoJ3 = {
-            new AnimatronicoDTO("NightmareFreddy", TipoAnimatronico.NightmareFreddy, false, 80, 1140, 1140, habNFreddy, true),
-            new AnimatronicoDTO("NightmareBonnie", TipoAnimatronico.NightmareBonnie, false, 75, 1130, 1130, habNBonnie, true),
-            new AnimatronicoDTO("NightmareChica", TipoAnimatronico.NightmareChica, false, 70, 1135, 1135, habNChica, true),
-            new AnimatronicoDTO("NightmareFoxy", TipoAnimatronico.NightmareFoxy, false, 85, 1110, 1110, habNFoxy, true)
-        };
-        AnimatronicoDTO[] grupoJ4 = {
-            new AnimatronicoDTO("ToyFreddy", TipoAnimatronico.ToyFreddy, false, 45, 1090, 1090, habTFreddy, true),
-            new AnimatronicoDTO("ToyBonnie", TipoAnimatronico.ToyBonnie, false, 50, 1085, 1085, habTBonnie, true),
-            new AnimatronicoDTO("ToyChica", TipoAnimatronico.ToyChica, false, 40, 1095, 1095, habTChica, true),
-            new AnimatronicoDTO("Mangle", TipoAnimatronico.Mangle, false, 55, 1080, 1080, habMangle, true)
-        };
-        */
-
-        // --- NUEVOS GRUPOS CON LOS ANIMATRONICOS A PROBAR ---
-        AnimatronicoDTO[] grupoJ1 = {
-            new AnimatronicoDTO("Balloon Boy", TipoAnimatronico.BalloonBoy, true, 35, 1050, 1050, habBB, true),
-            new AnimatronicoDTO("JJ", TipoAnimatronico.JJ, false, 38, 1050, 1050, habJJ, true),
-            new AnimatronicoDTO("Phantom Freddy", TipoAnimatronico.PhantomFreddy, false, 45, 1100, 1100, habPhantomFreddy, true),
-            new AnimatronicoDTO("Phantom Chica", TipoAnimatronico.PhantomChica, false, 42, 1100, 1100, habPhantomChica, true)
+            new AnimatronicoDTO("Endoplush", TipoAnimatronico.Endoplush, false, 55, 1080, 1080, habEndoplush, true),
+            new AnimatronicoDTO("PhantomPuppet", TipoAnimatronico.PhantomPuppet, false, 68, 1200, 1200, habPhantomPuppet, true),
+            new AnimatronicoDTO("ShadowFreddy", TipoAnimatronico.ShadowFreddy, false, 30, 1100, 1100, habShadowFreddy, true),
+            new AnimatronicoDTO("ShadowBonnie", TipoAnimatronico.ShadowBonnie, false, 60, 1100, 1100, habShadowBonnie, true)
         };
         
         AnimatronicoDTO[] grupoJ2 = {
-            new AnimatronicoDTO("Phantom BB", TipoAnimatronico.PhantomBB, false, 40, 1080, 1080, habPhantomBB, true),
-            new AnimatronicoDTO("Phantom Foxy", TipoAnimatronico.PhantomFoxy, false, 52, 1110, 1110, habPhantomFoxy, true),
-            new AnimatronicoDTO("Phantom Mangle", TipoAnimatronico.PhantomMangle, false, 48, 1090, 1090, habPhantomMangle, true),
-            new AnimatronicoDTO("Shadow Freddy", TipoAnimatronico.ShadowFreddy, false, 65, 1200, 1200, habShadowFreddy, true)
+            new AnimatronicoDTO("JJ", TipoAnimatronico.JJ, false, 38, 1050, 1050, habJJ, true),
+            new AnimatronicoDTO("PhantomBB", TipoAnimatronico.PhantomBB, false, 40, 1080, 1080, habPhantomBB, true),
+            new AnimatronicoDTO("Puppet", TipoAnimatronico.Puppet, false, 40, 1120, 1120, habPuppet, true),
+            new AnimatronicoDTO("Endo01", TipoAnimatronico.Endo01, false, 80, 1090, 1090, habEndo01, true)
         };
 
         AnimatronicoDTO[] grupoJ3 = {
-            new AnimatronicoDTO("Marionette", TipoAnimatronico.Puppet, false, 70, 1250, 1250, habPuppet, true),
-            new AnimatronicoDTO("Phantom Marionette", TipoAnimatronico.PhantomPuppet, false, 68, 1200, 1200, habPhantomPuppet, true),
-            new AnimatronicoDTO("Golden Freddy", TipoAnimatronico.GoldenFreddy, false, 85, 1300, 1300, habGoldenFreddy, true),
-            new AnimatronicoDTO("Paper Pals", TipoAnimatronico.Paperpals, false, 30, 950, 950, habPaperPals, true)
+            new AnimatronicoDTO("PhantomFreddy", TipoAnimatronico.PhantomFreddy, false, 45, 1100, 1100, habPhantomFreddy, true),
+            new AnimatronicoDTO("PhantomFoxy", TipoAnimatronico.PhantomFoxy, false, 75, 1130, 1130, habPhantomFoxy, true),
+            new AnimatronicoDTO("GoldenFreddy", TipoAnimatronico.GoldenFreddy, false, 70, 1135, 1135, habGoldenFreddy, true),
+            new AnimatronicoDTO("Endo02", TipoAnimatronico.Endo02, false, 85, 1110, 1110, habEndo02, true)
         };
 
         AnimatronicoDTO[] grupoJ4 = {
-            new AnimatronicoDTO("Endo 01", TipoAnimatronico.Endo01, false, 50, 1150, 1150, habEndo01, true),
-            new AnimatronicoDTO("Endo 02", TipoAnimatronico.Endo02, false, 55, 1180, 1180, habEndo02, true),
-            new AnimatronicoDTO("Endoplush", TipoAnimatronico.Endoplush, false, 40, 1020, 1020, habEndoplush, true),
-            new AnimatronicoDTO("Shadow Bonnie", TipoAnimatronico.ShadowBonnie, false, 75, 1200, 1200, habShadowBonnie, true)
+            new AnimatronicoDTO("PhantomChica", TipoAnimatronico.PhantomChica, false, 42, 1100, 1100, habPhantomChica, true),
+            new AnimatronicoDTO("PhantomMangle", TipoAnimatronico.PhantomMangle, false, 50, 1085, 1085, habPhantomMangle, true),
+            new AnimatronicoDTO("Paperpals", TipoAnimatronico.Paperpals, false, 40, 1095, 1095, habPaperPals, true),
+            new AnimatronicoDTO("BalloonBoy", TipoAnimatronico.BalloonBoy, true, 35, 1050, 1050, habBB, true)
         };
+        
         
         List<JugadorDTO> listaMockJugadores = new ArrayList<>();
         listaMockJugadores.add(new JugadorDTO("0", "Mondongo", "/avatars/mondongo.jpg", grupoJ1, true, Equipo.Rojo));

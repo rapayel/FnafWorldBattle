@@ -19,8 +19,10 @@ import org.fnafworld.dtos.JugadorDTO;
 import org.fnafworld.dtos.ParticipanteDTO;
 import org.fnafworld.dtos.ResultadoAtaqueDTO;
 import org.fnafworld.mvc.ModeloJuego;
-
-
+/**
+ * 
+ * @author lagar
+ */
 public class PanelFondoBatalla extends JPanel implements ModeloJuego.Observador {
     private BufferedImage fondo;
     private String urlFondo;
@@ -49,7 +51,12 @@ public class PanelFondoBatalla extends JPanel implements ModeloJuego.Observador 
     private void cicloJuego() {
         if (animatronicos != null) {
             for (AnimatronicoSprite sprite : animatronicos) {
-                sprite.actualizar();
+                if (sprite == null) continue;
+                try {
+                    sprite.actualizar();
+                } catch (Exception e) {
+                    System.err.println("Error actualizacion logica: " + sprite.getNombre() + " -> " + e.getMessage());
+                }
             }
         }
         repaint();
@@ -71,6 +78,8 @@ public class PanelFondoBatalla extends JPanel implements ModeloJuego.Observador 
 
         for (int i = 0; i < animatronicos.size(); i++) {
             AnimatronicoSprite sprite = animatronicos.get(i);
+            if (sprite == null) continue;
+            
             int numJugador = i / 4;
             if (numJugador == 0 || numJugador == 2) {
                 if (indiceRojo < posRojo.length) {
@@ -123,10 +132,14 @@ public class PanelFondoBatalla extends JPanel implements ModeloJuego.Observador 
                 if (sprite == null) {
                     continue;
                 }
-                if (anim.isIsVivo()) {
-                    sprite.marcarComoVivo();
-                } else {
-                    sprite.marcarComoDerrotado();
+                try {
+                    if (anim.isIsVivo()) {
+                        sprite.marcarComoVivo();
+                    } else {
+                        sprite.marcarComoDerrotado();
+                    }
+                } catch (Exception e) {
+                    System.err.println("Error estado vital: " + sprite.getNombre());
                 }
             }
         }
@@ -142,9 +155,13 @@ public class PanelFondoBatalla extends JPanel implements ModeloJuego.Observador 
             String idActual = atacante.getAnimatronico().getIdAnimatronico();
             if (!idActual.equals(idUltimoAtacante)) {
                 AnimatronicoSprite spriteAtacante = buscarSprite(atacante.getAnimatronico());
-                
                 if (spriteAtacante != null && atacante.getAnimatronico().isIsVivo()) {
-                    spriteAtacante.estadoAtacar(); 
+                    try {
+                        spriteAtacante.estadoAtacar(); 
+                    } catch (Exception e) {
+                        System.err.println("Error animacion ataque: " + spriteAtacante.getNombre());
+                        e.printStackTrace();
+                    }
                     idUltimoAtacante = idActual;  
                 }
             }
@@ -175,7 +192,12 @@ public class PanelFondoBatalla extends JPanel implements ModeloJuego.Observador 
         
         if (animatronicos != null) {
             for (AnimatronicoSprite sprite : animatronicos) {
-                sprite.dibujar(g);
+                if (sprite == null) continue;
+                try {
+                    sprite.dibujar(g);
+                } catch (Exception e) {
+                    System.err.println("Error renderizado: " + sprite.getNombre());
+                }
             }
         }
     }
