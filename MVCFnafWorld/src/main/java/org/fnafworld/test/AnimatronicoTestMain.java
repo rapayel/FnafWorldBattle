@@ -61,6 +61,20 @@ public class AnimatronicoTestMain {
         lista.add(new AnimatronicoSprite("Coffee", 4, 4, 199, 147, 9, 4, 4, 157, 197, 147, 12, 6, 40, 40));
         lista.add(new AnimatronicoSprite("CryingChild", 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 12, 2, 40, 40));
         lista.add(new AnimatronicoSprite("Fredbear", 2, 3, 250, 298, 10, 2, 2, 303, 250, 298, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("FuntimeFoxy", 2, 3, 250, 248, 12, 2, 2, 253, 250, 248, 11, 2, 40, 45));
+        lista.add(new AnimatronicoSprite("JackOBonnie", 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 12, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("JackOChica", 4, 4, 249, 248, 11, 4, 4, 257, 254, 258, 12, 4, 40, 40));
+        lista.add(new AnimatronicoSprite("MrChipper", 5, 4, 248, 249, 9, 5, 5, 257, 248, 249, 10, 5, 40, 40));
+        lista.add(new AnimatronicoSprite("Nightmare", 2, 1, 250, 300, 12, 2, 2, 303, 250, 300, 13, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("NightmareFredbear", 2, 1, 250, 300, 12, 2, 2, 303, 250, 300, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("NightmareBB", 2, 3, 250, 247, 10, 2, 2, 253, 250, 247, 10, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("NightmarePuppet", 2, 0, 250, 248, 9, 2, 2, 252, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("Plushtrap", 2, 1, 250, 248, 10, 2, 2, 505, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("Purpleguy", 2, 3, 250, 247, 2, 2, 2, 253, 250, 248, 11, 2, 500, 40));
+        lista.add(new AnimatronicoSprite("SpringBonnie", 2, 1, 250, 300, 12, 2, 2, 303, 250, 300, 13, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("Springtrap", 2, 3, 250, 247, 12, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+        lista.add(new AnimatronicoSprite("TheFan", 2, 1, 100, 100, 5, 2, 2, 1, 100, 100, 5, 2, 40, 40));
+        
         return lista;
     }
 }

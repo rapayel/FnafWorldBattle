@@ -276,6 +276,87 @@ public class MVCWorld {
             new HabilidadDTO(0, TipoHabilidad.MimicBall, "Duplica instantáneamente cada habilidad ofensiva ejecutada."),
             new HabilidadDTO(0, TipoHabilidad.GiftBoxes, "Otorga cajas de resurrección automática a todo el equipo.")
         };
+        HabilidadDTO[] habPlushtrap = {
+            new HabilidadDTO(0, TipoHabilidad.Haunting, "Aterroriza y congela las acciones de un objetivo."),
+            new HabilidadDTO(0, TipoHabilidad.MimicBall, "Duplica instantáneamente cada habilidad ofensiva ejecutada."),
+            new HabilidadDTO(0, TipoHabilidad.GiftBoxes, "Otorga cajas de resurrección automática a todo el equipo.")
+        };
+    
+        HabilidadDTO[] habSpringtrap = {
+            new HabilidadDTO(60, TipoHabilidad.Bite2, "Ataque mandibular salvaje que destroza los puntos de salud."),
+            new HabilidadDTO(80, TipoHabilidad.SpringLocks, "Desata trampas de resortes infligiendo grave daño mecánico."),
+            new HabilidadDTO(0, TipoHabilidad.RainyDay, "Lluvia tormentosa que debilita las defensas contrarias.")
+        };
+        HabilidadDTO[] habCryingChild = {
+            new HabilidadDTO(0, TipoHabilidad.PowerSong, "Aumenta considerablemente el daño de ataque de todo el equipo."),
+            new HabilidadDTO(0, TipoHabilidad.ArmorSong, "Incrementa la defensa global del escuadrón mitigando daño."),
+            new HabilidadDTO(0, TipoHabilidad.GiftBoxes, "Otorga cajas de resurrección automática a todo el equipo.")
+        };
+        HabilidadDTO[] habFuntimeFoxy = {
+            new HabilidadDTO(0, TipoHabilidad.HappyJam2, "Sana de forma masiva e instantanea los puntos de salud aliados."),
+            new HabilidadDTO(75, TipoHabilidad.CosmicSong, "Invoca meteoros que infligen alto daño de energía continuo."),
+            new HabilidadDTO(0, TipoHabilidad.GiftBoxes, "Otorga cajas de resurrección automática a todo el equipo.")
+        };
+        HabilidadDTO[] habNightmareFredbear = {
+            new HabilidadDTO(85, TipoHabilidad.ToxicBite2, "Mordida de pesadilla cargada con toxinas letales."),
+            new HabilidadDTO(90, TipoHabilidad.BadPizza, "Lanza una pizza podrida que estalla causando daño masivo."),
+            new HabilidadDTO(100, TipoHabilidad.MegaBite, "Ejecuta una mordida devastadora de daño crítico extremo.")
+        };
+        HabilidadDTO[] habNightmare = {
+            new HabilidadDTO(85, TipoHabilidad.ToxicBite2, "Mordida de pesadilla cargada con toxinas letales."),
+            new HabilidadDTO(0, TipoHabilidad.RainyDay2, "Un grito ensordecedor que inhabilita las acciones del rival."),
+            new HabilidadDTO(100, TipoHabilidad.MegaBite, "Ejecuta una mordida devastadora de daño crítico extremo.")
+        };
+        HabilidadDTO[] habFredbear = {
+            new HabilidadDTO(100, TipoHabilidad.MegaBite, "Ejecuta una mordida devastadora de daño crítico extremo."),
+            new HabilidadDTO(0, TipoHabilidad.RegenSong, "Entona una melodia que activa la regeneracion de salud pasiva."),
+            new HabilidadDTO(0, TipoHabilidad.MimicBall, "Genera una esfera que duplica todos los ataques aliados.")
+        };
+        HabilidadDTO[] habSpringBonnie = {
+            new HabilidadDTO(80, TipoHabilidad.SpringLocks, "Desata trampas de resortes infligiendo grave daño mecánico."),
+            new HabilidadDTO(0, TipoHabilidad.HappyJam2, "Sana de forma masiva e instantanea los puntos de salud aliados."),
+            new HabilidadDTO(75, TipoHabilidad.CosmicSong, "Invoca meteoros que infligen alto daño de energía continuo.")
+        };
+        HabilidadDTO[] habJackOBonnie = {
+            new HabilidadDTO(95, TipoHabilidad.JackOBomb, "Lanza una calabaza explosiva que causa daño de fuego masivo."),
+            new HabilidadDTO(0, TipoHabilidad.Haunting, "Aterroriza y congela las acciones de un objetivo."),
+            new HabilidadDTO(120, TipoHabilidad.Slasher, "Tiene una probabilidad de infligir un daño masivo de un solo golpe.")
+        };
+        HabilidadDTO[] habJackOChica = {
+            new HabilidadDTO(95, TipoHabilidad.JackOBomb, "Lanza una calabaza explosiva que causa daño de fuego masivo."),
+            new HabilidadDTO(50, TipoHabilidad.Munchies, "Invoca animadoras que causan daño pasivo continuo."),
+            new HabilidadDTO(85, TipoHabilidad.Buzzsaw, "Ataca con una sierra circular infligiendo daño constante.")
+        };
+        HabilidadDTO[] habAnimdude = {
+            new HabilidadDTO(0, TipoHabilidad.NeonWall2, "Genera un escudo de luz avanzado que bloquea daño masivo."),
+            new HabilidadDTO(110, TipoHabilidad.MegaVirus, "Infecta con un virus informático que drena salud velozmente."),
+            new HabilidadDTO(130, TipoHabilidad.Th4Wall, "Rompe la cuarta pared causando daño absoluto e inevitable.")
+        };
+        HabilidadDTO[] habMrChipper = {
+            new HabilidadDTO(50, TipoHabilidad.Hook, "Corta con su garfio ejecutando un daño critico alto."),
+            new HabilidadDTO(0, TipoHabilidad.HocusPocus, "Hechizo que transforma a los enemigos en versiones más débiles."),
+            new HabilidadDTO(85, TipoHabilidad.Buzzsaw, "Ataca con una sierra circular infligiendo daño constante.")
+        };
+        HabilidadDTO[] habNightmareBB = {
+            new HabilidadDTO(100, TipoHabilidad.MegaBite, "Ejecuta una mordida devastadora de daño crítico extremo."),
+            new HabilidadDTO(0, TipoHabilidad.BubbleBreath, "Otorga inmunidad temporal contra ataques de estado gaseoso."),
+            new HabilidadDTO(65, TipoHabilidad.Balloons2, "Invoca globos mejorados que dañan objetivos múltiples.")
+        };
+        HabilidadDTO[] habNightmarePuppet = {
+            new HabilidadDTO(0, TipoHabilidad.PrizeBall2, "Crea un efecto aleatorio muy potente basado en cajas de regalos."),
+            new HabilidadDTO(0, TipoHabilidad.BubbleBreath, "Otorga inmunidad temporal contra ataques de estado gaseoso."),
+            new HabilidadDTO(130, TipoHabilidad.Th4Wall, "Rompe la cuarta pared causando daño absoluto e inevitable.")
+        };
+        HabilidadDTO[] habCoffee = {
+            new HabilidadDTO(0, TipoHabilidad.GiftBoxes, "Otorga cajas de resurrección automática a todo el equipo."),
+            new HabilidadDTO(110, TipoHabilidad.MegaVirus, "Infecta con un virus informático que drena salud velozmente."),
+            new HabilidadDTO(0, TipoHabilidad.Unscrew2, "Inhabilita a las filas enemigas impidiendo su movilidad.")
+        };
+        HabilidadDTO[] habPurpleGuy = {
+            new HabilidadDTO(0, TipoHabilidad.SpeedSong, "Maximiza la velocidad de carga de turnos del equipo."),
+            new HabilidadDTO(0, TipoHabilidad.HocusPocus, "Hechizo que transforma a los enemigos en versiones más débiles."),
+            new HabilidadDTO(120, TipoHabilidad.Slasher, "Tiene una probabilidad de infligir un daño masivo de un solo golpe.")
+        };
         
         AnimatronicoDTO[] grupoJ1 = {
             new AnimatronicoDTO("Endoplush", TipoAnimatronico.Endoplush, false, 55, 1080, 1080, habEndoplush, true),
