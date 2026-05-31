@@ -20,12 +20,14 @@ import org.fnafworld.dtos.ParticipanteDTO;
 import org.fnafworld.dtos.ResultadoAtaqueDTO;
 import org.fnafworld.mvc.ModeloJuego;
 
+
 public class PanelFondoBatalla extends JPanel implements ModeloJuego.Observador {
     private BufferedImage fondo;
     private String urlFondo;
     private List<AnimatronicoSprite> animatronicos;
     private Timer timerMaestro;
     private ModeloJuego modelo;
+    private String idUltimoAtacante = "";
     
     public PanelFondoBatalla(String urlFondo, List<AnimatronicoSprite> animatronicos, ModeloJuego modelo) {
         this.urlFondo = urlFondo;
@@ -131,15 +133,23 @@ public class PanelFondoBatalla extends JPanel implements ModeloJuego.Observador 
 
         ResultadoAtaqueDTO estado = modelo.getEstadoActual();
         if (estado == null) {
+            idUltimoAtacante = "";
             return;
         }
 
         ParticipanteDTO atacante = estado.getAtacante();
-        if (atacante != null) {
-            AnimatronicoSprite spriteAtacante = buscarSprite(atacante.getAnimatronico());
-            if (spriteAtacante != null && atacante.getAnimatronico() != null && atacante.getAnimatronico().isIsVivo()) {
-                spriteAtacante.estadoAtacar();
+        if (atacante != null && atacante.getAnimatronico() != null) {
+            String idActual = atacante.getAnimatronico().getIdAnimatronico();
+            if (!idActual.equals(idUltimoAtacante)) {
+                AnimatronicoSprite spriteAtacante = buscarSprite(atacante.getAnimatronico());
+                
+                if (spriteAtacante != null && atacante.getAnimatronico().isIsVivo()) {
+                    spriteAtacante.estadoAtacar(); 
+                    idUltimoAtacante = idActual;  
+                }
             }
+        } else {
+            idUltimoAtacante = ""; 
         }
     }
 
