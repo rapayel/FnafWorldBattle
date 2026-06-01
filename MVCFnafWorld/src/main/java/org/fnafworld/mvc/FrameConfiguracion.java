@@ -7,8 +7,8 @@ package org.fnafworld.mvc;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.CardLayout;
-import java.awt.EventQueue;
 import java.awt.Image;
+import org.fnafworld.mvc.vista.PanelSelector;
 import java.awt.Toolkit;
 import org.fnafworld.sonido.AudioManager;
 import org.fnafworld.mvc.vista.PanelTitulo;
@@ -25,7 +25,7 @@ public class FrameConfiguracion extends JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         
         try {
-            Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/iconos/iconojuego.png"));
+            Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/extrase/iconojuego.png"));
             setIconImage(icono);
         } catch (Exception e) {
             System.err.println("No se pudo cargar el icono del juego: " + e.getMessage());
@@ -36,7 +36,8 @@ public class FrameConfiguracion extends JFrame {
 
         PanelTitulo panelTitulo = new PanelTitulo(this);
         contenedorPrincipal.add(panelTitulo, "PanelTitulo");
-
+        PanelSelector panelSelector = new PanelSelector(this);
+        contenedorPrincipal.add(panelSelector, "PanelSelector");
         add(contenedorPrincipal);
 
         reproducirMusica();
@@ -54,12 +55,5 @@ public class FrameConfiguracion extends JFrame {
 
     public void cambiarPantalla(String nombreCard) {
         cardLayout.show(contenedorPrincipal, nombreCard);
-    }
-    
-    public static void main(String[] args) {
-        EventQueue.invokeLater(() -> {
-            FrameConfiguracion frame = new FrameConfiguracion();
-            frame.setVisible(true);
-        });
     }
 }
