@@ -6,6 +6,7 @@ package org.fnafworld.dominio.fachada;
 
 import org.fnafworld.dtos.ResultadoAtaqueDTO;
 import org.fnafworld.dominio.entidades.BatallaCampo;
+import org.fnafworld.dominio.entidades.Lobby;
 import org.fnafworld.dtos.AtaqueDTO;
 import org.fnafworld.dtos.EquiposDTO;
 
@@ -22,7 +23,8 @@ public class FachadaJuego implements IFachadaJuego{
     
     @Override
     public ResultadoAtaqueDTO iniciarPartida(EquiposDTO equipos) {
-        this.batallaCampo = new BatallaCampo(equipos);
+        Lobby lobby = new Lobby(equipos);
+        this.batallaCampo = lobby.iniciarPartida();
         return batallaCampo.construirResultado();
     }
     

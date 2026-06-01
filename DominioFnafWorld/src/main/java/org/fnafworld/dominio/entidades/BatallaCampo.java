@@ -74,33 +74,19 @@ public class BatallaCampo {
     private Animatronico ultimoAnimatronicoAtacante;
     private List<Animatronico> ultimosAfectados;
 
-    public BatallaCampo(EquiposDTO equiposDTO) {
-        if (equiposDTO == null || equiposDTO.getJugadores() == null) {
-            throw new IllegalArgumentException("La configuración de equipos no puede ser nula.");
+    public BatallaCampo(List<Jugador> jugadores, String urlCampo, String urlMusica) {
+        if (jugadores == null) {
+            throw new IllegalArgumentException("Los jugadores de la batalla no pueden ser nulos.");
         }
 
-        this.urlCampo = equiposDTO.getUrlCampo();
-        this.urlMusica = equiposDTO.getUrlMusica();
+        this.urlCampo = urlCampo;
+        this.urlMusica = urlMusica;
         this.ganador = null;
         this.random = new Random();
         this.indiceJugadorActual = 0;
         this.indiceAnimatronicoActual = 0;
-        this.jugadores = new ArrayList<>();
+        this.jugadores = new ArrayList<>(jugadores);
         this.ultimosAfectados = new ArrayList<>();
-
-        for (JugadorDTO jDto : equiposDTO.getJugadores()) {
-            if (jDto != null) {
-                Animatronico[] grupoEntidad = mapearGrupoDTOaEntidades(jDto.getGrupo());
-                Jugador jugador = new Jugador(
-                        jDto.getId(),
-                        jDto.getNombre(),
-                        jDto.getUrlAvatar(),
-                        grupoEntidad,
-                        jDto.getEquipo()
-                );
-                this.jugadores.add(jugador);
-            }
-        }
         iniciarTurnos();
     }
     
