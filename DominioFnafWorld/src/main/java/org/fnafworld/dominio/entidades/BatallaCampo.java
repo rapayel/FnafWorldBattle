@@ -167,8 +167,28 @@ public class BatallaCampo {
 
         JugadorDTO ganadorDTO = ganador != null ? convertirJugadorADTO(ganador) : null;
         String idJugadorTurno = jugadorActual != null ? jugadorActual.getId() : null;
+        List<EfectoAnimatronicoDTO> efectosDTO = convertirEfectosAnimatronicosADTO();
 
-        return new ResultadoAtaqueDTO(atacanteDTO, afectadosDTO, jugadoresDTO, idJugadorTurno, ganadorDTO);
+        return new ResultadoAtaqueDTO(atacanteDTO, afectadosDTO, jugadoresDTO, idJugadorTurno, ganadorDTO, efectosDTO);
+    }
+
+    private List<EfectoAnimatronicoDTO> convertirEfectosAnimatronicosADTO() {
+        List<EfectoAnimatronicoDTO> efectos = new ArrayList<>();
+        if (jugadores == null) {
+            return efectos;
+        }
+
+        for (Jugador jugador : jugadores) {
+            if (jugador == null || jugador.getGrupo() == null) {
+                continue;
+            }
+            for (Animatronico animatronico : jugador.getGrupo()) {
+                if (animatronico != null) {
+                    efectos.addAll(animatronico.crearEfectosDTO(jugador.getId()));
+                }
+            }
+        }
+        return efectos;
     }
     
     private JugadorDTO convertirJugadorADTO(Jugador jugador) {

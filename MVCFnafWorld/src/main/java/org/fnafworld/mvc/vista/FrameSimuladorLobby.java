@@ -99,7 +99,6 @@ public class FrameSimuladorLobby extends JFrame implements ModeloJuego.Observado
                 (String) comboAvatar.getSelectedItem(),
                 (Equipo) comboEquipo.getSelectedItem()
         );
-        control.seleccionarJugadorConfigurando(id);
     }
 
     private void agregarAnimatronicoRemoto() {

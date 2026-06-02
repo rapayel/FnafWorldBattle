@@ -39,6 +39,7 @@ public class FrameSimuladorRed extends JFrame implements ModeloJuego.Observador 
         
         configurarVentana();
         inicializarComponentes();
+        mapearActualizacion();
     }
 
     private void configurarVentana() {

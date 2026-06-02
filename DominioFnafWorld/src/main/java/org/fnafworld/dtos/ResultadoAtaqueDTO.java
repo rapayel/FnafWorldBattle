@@ -4,6 +4,7 @@
  */
 package org.fnafworld.dtos;
 
+import java.util.Collections;
 import java.util.List;
 /**
  * 
@@ -13,6 +14,7 @@ public class ResultadoAtaqueDTO {
     private final ParticipanteDTO atacante;
     private final List<ParticipanteDTO> afectados;
     private final List<JugadorDTO> jugadores;
+    private final List<EfectoAnimatronicoDTO> efectosAnimatronicos;
     private final String idJugadorTurnoActual;
     private final JugadorDTO ganador;
  
@@ -20,7 +22,7 @@ public class ResultadoAtaqueDTO {
                                List<ParticipanteDTO> afectados,
                                String idJugadorTurnoActual,
                                JugadorDTO ganador) {
-        this(atacante, afectados, null, idJugadorTurnoActual, ganador);
+        this(atacante, afectados, null, idJugadorTurnoActual, ganador, null);
     }
 
     public ResultadoAtaqueDTO(ParticipanteDTO atacante,
@@ -28,9 +30,19 @@ public class ResultadoAtaqueDTO {
                                List<JugadorDTO> jugadores,
                                String idJugadorTurnoActual,
                                JugadorDTO ganador) {
+        this(atacante, afectados, jugadores, idJugadorTurnoActual, ganador, null);
+    }
+
+    public ResultadoAtaqueDTO(ParticipanteDTO atacante,
+                               List<ParticipanteDTO> afectados,
+                               List<JugadorDTO> jugadores,
+                               String idJugadorTurnoActual,
+                               JugadorDTO ganador,
+                               List<EfectoAnimatronicoDTO> efectosAnimatronicos) {
         this.atacante = atacante;
         this.afectados = afectados;
         this.jugadores = jugadores;
+        this.efectosAnimatronicos = efectosAnimatronicos != null ? efectosAnimatronicos : Collections.emptyList();
         this.idJugadorTurnoActual = idJugadorTurnoActual;
         this.ganador = ganador;
     }
@@ -45,6 +57,10 @@ public class ResultadoAtaqueDTO {
 
     public List<JugadorDTO> getJugadores() {
         return jugadores;
+    }
+
+    public List<EfectoAnimatronicoDTO> getEfectosAnimatronicos() {
+        return efectosAnimatronicos;
     }
  
     public String getIdJugadorTurnoActual() {

@@ -23,6 +23,8 @@ import org.fnafworld.TipoHabilidad;
  * @author lagar
  */
 public class ModeloJuego {
+    private static final int CANTIDAD_NORMAL_ANIMATRONICOS = 4;
+    private static final int CANTIDAD_BALANCE_ANIMATRONICOS = 8;
 
     private final IFachadaJuego fachada;
     private final Fabrica fabrica;
@@ -78,7 +80,7 @@ public class ModeloJuego {
         }
 
         AnimatronicoDTO[] grupoActual = jugador.getGrupo() != null ? jugador.getGrupo() : new AnimatronicoDTO[0];
-        if (grupoActual.length >= 4 || contieneAnimatronico(grupoActual, tipo)) {
+        if (grupoActual.length >= getMaximoAnimatronicosPermitidos(idJugador) || contieneAnimatronico(grupoActual, tipo)) {
             return;
         }
 
@@ -144,11 +146,19 @@ public class ModeloJuego {
         return true;
     }
 
-    public void iniciarPartidaDesdeLobby(String urlCampo, String urlMusica) {
-        if (!puedeIniciarLobby()) {
-            return;
+    public void iniciarPartidaDesdeLobby(String urlFondo, String urlMusica) {
+        if (this.jugadoresLobby == null || this.jugadoresLobby.isEmpty()) {
+            return; 
         }
-        iniciarPartidaEnDominio(jugadoresLobby, urlCampo, urlMusica);
+        this.jugadores = new ArrayList<>(this.jugadoresLobby);
+        EquiposDTO equipos = new EquiposDTO(this.jugadores, urlFondo, urlMusica);
+        if (this.fachada != null) {
+            this.estadoActual = this.fachada.iniciarPartida(equipos);
+            if (this.estadoActual != null && this.estadoActual.getJugadores() != null) {
+                this.jugadores = this.estadoActual.getJugadores();
+            }
+        }
+        notificarObservadores();
     }
 
     public void iniciarPartidaEnDominio(List<JugadorDTO> listaMockJugadores, String urlCampo, String urlMusica) {
@@ -197,6 +207,26 @@ public class ModeloJuego {
 
     public String getIdJugadorConfigurando() {
         return idJugadorConfigurando;
+    }
+
+    public int getMaximoAnimatronicosPermitidos(String idJugador) {
+        int indiceJugador = obtenerIndiceJugadorLobby(idJugador);
+        if (indiceJugador < 0) {
+            return CANTIDAD_NORMAL_ANIMATRONICOS;
+        }
+
+        int cantidadJugadores = jugadoresLobby != null ? jugadoresLobby.size() : 0;
+        if (cantidadJugadores == 2) {
+            return CANTIDAD_BALANCE_ANIMATRONICOS;
+        }
+        if (cantidadJugadores == 3 && indiceJugador == 1) {
+            return CANTIDAD_BALANCE_ANIMATRONICOS;
+        }
+        return CANTIDAD_NORMAL_ANIMATRONICOS;
+    }
+
+    public int getCantidadJugadoresLobby() {
+        return jugadoresLobby != null ? jugadoresLobby.size() : 0;
     }
 
     public AnimatronicoDTO crearAnimatronicoVistaPrevia(TipoAnimatronico tipo) {
@@ -254,6 +284,19 @@ public class ModeloJuego {
             }
         }
         return null;
+    }
+
+    private int obtenerIndiceJugadorLobby(String id) {
+        if (id == null || jugadoresLobby == null) {
+            return -1;
+        }
+        for (int i = 0; i < jugadoresLobby.size(); i++) {
+            JugadorDTO jugador = jugadoresLobby.get(i);
+            if (jugador != null && id.equals(jugador.getId())) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     private AnimatronicoDTO[] obtenerGrupoLobby(String id) {

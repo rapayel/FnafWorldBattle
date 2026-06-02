@@ -52,6 +52,7 @@ public class FrameJuego extends JFrame implements ModeloJuego.Observador {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setResizable(false); 
         this.setLocationRelativeTo(null);
+        mapearActualizacion();
     }
 
     @Override

@@ -79,7 +79,7 @@ public class ScreenSelectorAnimatronicos extends JPanel implements ModeloJuego.O
 
         btnAgregar.addActionListener(e -> agregarSeleccionAlGrupo());
         btnListo.addActionListener(e -> control.marcarJugadorListo(modelo.getIdJugadorConfigurando()));
-        btnIniciar.addActionListener(e -> control.iniciarPartidaDesdeLobby());
+        btnIniciar.addActionListener(e -> parent.iniciarPartidaConCarga());
 
         acciones.add(lblEstado);
         acciones.add(btnAgregar);
@@ -120,15 +120,22 @@ public class ScreenSelectorAnimatronicos extends JPanel implements ModeloJuego.O
         for (JugadorDTO jugador : modelo.getJugadoresLobby()) {
             panelJugadores.add(crearPanelJugador(jugador));
         }
+        boolean hayJugadorConfigurando = modelo.getIdJugadorConfigurando() != null;
+        btnAgregar.setEnabled(hayJugadorConfigurando && puedeAgregarAlJugadorConfigurando());
+        btnListo.setEnabled(hayJugadorConfigurando);
         btnIniciar.setEnabled(modelo.puedeIniciarLobby());
+        actualizarEstadoConteoLobby();
         panelJugadores.revalidate();
         panelJugadores.repaint();
     }
 
     private JPanel crearPanelJugador(JugadorDTO jugador) {
+        boolean editable = esJugadorConfigurando(jugador);
+        int cantidadAnimatronicos = jugador.getGrupo() != null ? jugador.getGrupo().length : 0;
+        int maximoAnimatronicos = modelo.getMaximoAnimatronicosPermitidos(jugador.getId());
         JPanel panel = new JPanel(new BorderLayout(8, 6));
         panel.setOpaque(true);
-        panel.setBackground(jugador.getId().equals(modelo.getIdJugadorConfigurando())
+        panel.setBackground(editable
                 ? new Color(25, 55, 85)
                 : new Color(22, 26, 38));
         panel.setBorder(BorderFactory.createCompoundBorder(
@@ -136,7 +143,9 @@ public class ScreenSelectorAnimatronicos extends JPanel implements ModeloJuego.O
                 BorderFactory.createEmptyBorder(8, 8, 8, 8)
         ));
 
-        JLabel titulo = new JLabel(jugador.getNombre() + " - " + jugador.getEquipo() + (jugador.isMiTurno() ? " (Listo)" : ""));
+        JLabel titulo = new JLabel(jugador.getNombre() + " - " + jugador.getEquipo()
+                + " (" + cantidadAnimatronicos + "/" + maximoAnimatronicos + ")"
+                + (jugador.isMiTurno() ? " (Listo)" : ""));
         titulo.setForeground(Color.WHITE);
         titulo.setFont(new Font("Arial", Font.BOLD, 12));
         panel.add(titulo, BorderLayout.NORTH);
@@ -153,16 +162,55 @@ public class ScreenSelectorAnimatronicos extends JPanel implements ModeloJuego.O
                     btnIcono.setToolTipText(anim.getTipo().name());
                     btnIcono.setFocusPainted(false);
                     final int indice = i;
-                    btnIcono.addActionListener(e -> control.quitarAnimatronicoDeGrupo(jugador.getId(), indice));
+                    btnIcono.setEnabled(editable);
+                    if (editable) {
+                        btnIcono.addActionListener(e -> control.quitarAnimatronicoDeGrupo(jugador.getId(), indice));
+                    }
                     iconos.add(btnIcono);
                 }
             }
         }
         panel.add(iconos, BorderLayout.CENTER);
 
-        JButton configurar = crearBoton("Configurar");
-        configurar.addActionListener(e -> control.seleccionarJugadorConfigurando(jugador.getId()));
-        panel.add(configurar, BorderLayout.EAST);
+        if (editable) {
+            JButton configurar = crearBoton("Tu grupo");
+            configurar.setEnabled(false);
+            panel.add(configurar, BorderLayout.EAST);
+        }
         return panel;
+    }
+
+    private boolean esJugadorConfigurando(JugadorDTO jugador) {
+        return jugador != null && jugador.getId().equals(modelo.getIdJugadorConfigurando());
+    }
+
+    private boolean puedeAgregarAlJugadorConfigurando() {
+        for (JugadorDTO jugador : modelo.getJugadoresLobby()) {
+            if (esJugadorConfigurando(jugador)) {
+                int cantidadAnimatronicos = jugador.getGrupo() != null ? jugador.getGrupo().length : 0;
+                return cantidadAnimatronicos < modelo.getMaximoAnimatronicosPermitidos(jugador.getId());
+            }
+        }
+        return false;
+    }
+
+    private void actualizarEstadoConteoLobby() {
+        String idJugador = modelo.getIdJugadorConfigurando();
+        int cantidadJugadores = modelo.getCantidadJugadoresLobby();
+        if (idJugador == null) {
+            lblEstado.setText("Jugadores: " + cantidadJugadores);
+            return;
+        }
+
+        for (JugadorDTO jugador : modelo.getJugadoresLobby()) {
+            if (esJugadorConfigurando(jugador)) {
+                int cantidadAnimatronicos = jugador.getGrupo() != null ? jugador.getGrupo().length : 0;
+                int maximoAnimatronicos = modelo.getMaximoAnimatronicosPermitidos(jugador.getId());
+                lblEstado.setText("Jugadores: " + cantidadJugadores + " | Tu grupo: "
+                        + cantidadAnimatronicos + "/" + maximoAnimatronicos);
+                return;
+            }
+        }
+        lblEstado.setText("Jugadores: " + cantidadJugadores);
     }
 }

@@ -11,7 +11,8 @@ import org.fnafworld.dtos.SolicitudAnimatronicoFabricaDTO;
 
 public class Fabrica {
     private static final int FUERZA_DEFAULT = 50;
-    private static final int VIDA_DEFAULT = 100;
+    private static final int VIDA_DEFAULT = 1000;
+    private static final int ESCALA_VIDA_BALANCE = 10;
 
     public AnimatronicoDTO crearAnimatronico(SolicitudAnimatronicoFabricaDTO solicitud) {
         if (solicitud == null || solicitud.getTipo() == null) {
@@ -149,7 +150,15 @@ public class Fabrica {
     }
 
     private AnimatronicoDTO anim(String id, TipoAnimatronico tipo, boolean turno, int fuerza, int vida, HabilidadDTO[] habilidades) {
-        return new AnimatronicoDTO(id, tipo, turno, fuerza, vida, vida, habilidades, true);
+        int vidaBalanceada = balancearVida(vida);
+        return new AnimatronicoDTO(id, tipo, turno, fuerza, vidaBalanceada, vidaBalanceada, habilidades, true);
+    }
+
+    private int balancearVida(int vida) {
+        if (vida <= 0 || vida >= 500) {
+            return vida;
+        }
+        return vida * ESCALA_VIDA_BALANCE;
     }
 
     private HabilidadDTO hab(int poder, TipoHabilidad tipo, String descripcion) {

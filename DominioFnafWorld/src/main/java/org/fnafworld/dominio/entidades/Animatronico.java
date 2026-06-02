@@ -1,6 +1,9 @@
 package org.fnafworld.dominio.entidades;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.fnafworld.TipoAnimatronico;
+import org.fnafworld.dtos.EfectoAnimatronicoDTO;
 /**
  * 
  * @author lagar
@@ -123,6 +126,51 @@ public class Animatronico {
             return 0;
         }
         return habilidad.getPoder() + poderHabilidadesAumentado;
+    }
+
+    public List<EfectoAnimatronicoDTO> crearEfectosDTO(String idJugador) {
+        List<EfectoAnimatronicoDTO> efectos = new ArrayList<>();
+        agregarEfecto(efectos, idJugador, "Fuerza aumentada", fuerzaAumentada, turnosFuerzaAumentada, true);
+        agregarEfecto(efectos, idJugador, "Fuerza reducida", fuerzaReducida, turnosFuerzaReducida, false);
+        agregarEfecto(efectos, idJugador, "Armadura aumentada", armaduraAumentada, turnosArmaduraAumentada, true);
+        agregarEfecto(efectos, idJugador, "Armadura reducida", armaduraReducida, turnosArmaduraReducida, false);
+        agregarEfecto(efectos, idJugador, "Poder aumentado", poderHabilidadesAumentado, turnosPoderHabilidadesAumentado, true);
+        agregarEfecto(efectos, idJugador, "Habilidades sin poder", 0, turnosHabilidadesSinPoder, false);
+        agregarEfecto(efectos, idJugador, "Regeneracion", regeneracionPorTurno, turnosRegeneracion, true);
+        agregarEfecto(efectos, idJugador, "Toxicidad", toxicidadPorTurno, turnosToxicidad, false);
+        agregarEfecto(efectos, idJugador, "Proteccion toxicidad", 0, turnosProteccionToxicidad, true);
+        agregarEfecto(efectos, idJugador, "Danio pasivo", danioPasivoPorTurno, turnosDanioPasivo, false);
+        agregarEfecto(efectos, idJugador, "Danio pasivo severo", danioPasivoSeveroPorTurno, turnosDanioPasivoSevero, false);
+        agregarEfecto(efectos, idJugador, "Danio retardado", danioRetardado, turnosDanioRetardado, false);
+        agregarEfecto(efectos, idJugador, "Invencible", 0, turnosInvencible, true);
+        agregarEfecto(efectos, idJugador, "Danio cosmico", danioCosmicoPorAtaque, turnosDanioCosmico, false);
+        agregarEfecto(efectos, idJugador, "Noqueado", 0, turnosNoqueado, false);
+        agregarEfecto(efectos, idJugador, "Danio extra ataque", danioExtraAtaque, turnosDanioExtraAtaque, true);
+        agregarEfecto(efectos, idJugador, "Neon Wall", 0, turnosNeonWall, true);
+        if (ataquesDoblesPendientes > 0) {
+            agregarEfecto(efectos, idJugador, "Ataque doble", ataquesDoblesPendientes, ataquesDoblesPendientes, true);
+        }
+        return efectos;
+    }
+
+    private void agregarEfecto(List<EfectoAnimatronicoDTO> efectos,
+                               String idJugador,
+                               String nombre,
+                               int valor,
+                               int turnosRestantes,
+                               boolean positivo) {
+        if (turnosRestantes <= 0) {
+            return;
+        }
+        efectos.add(new EfectoAnimatronicoDTO(
+                idJugador,
+                idAnimatronico,
+                tipo,
+                nombre,
+                valor,
+                turnosRestantes,
+                positivo
+        ));
     }
 
     public void recibirDanio(int danio) {

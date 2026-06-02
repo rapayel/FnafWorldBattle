@@ -23,6 +23,7 @@ import org.fnafworld.dtos.JugadorDTO;
 import org.fnafworld.mvc.vista.AnimatronicoSprite;
 import org.fnafworld.mvc.vista.FrameSimuladorLobby;
 import org.fnafworld.mvc.vista.FrameSimuladorRed;
+import org.fnafworld.mvc.vista.PanelCargaBatalla;
 import org.fnafworld.mvc.vista.PanelFondoBatalla;
 import org.fnafworld.sonido.AudioManager;
 import org.fnafworld.mvc.vista.PanelTitulo;
@@ -36,6 +37,7 @@ public class FrameConfiguracion extends JFrame implements ModeloJuego.Observador
     private ControlJuego control;
     private AudioManager audioManager;
     private ScreenSelectorAnimatronicos screenSelector;
+    private PanelCargaBatalla panelCargaBatalla;
     private FrameSimuladorLobby simuladorLobby;
     private boolean batallaAbierta;
 
@@ -65,6 +67,9 @@ public class FrameConfiguracion extends JFrame implements ModeloJuego.Observador
 
         screenSelector = new ScreenSelectorAnimatronicos(this, modelo, control);
         contenedorPrincipal.add(screenSelector, "ScreenSelector");
+
+        panelCargaBatalla = new PanelCargaBatalla();
+        contenedorPrincipal.add(panelCargaBatalla, "PanelCargaBatalla");
         add(contenedorPrincipal);
 
         reproducirMusica();
@@ -82,6 +87,14 @@ public class FrameConfiguracion extends JFrame implements ModeloJuego.Observador
 
     public void cambiarPantalla(String nombreCard) {
         cardLayout.show(contenedorPrincipal, nombreCard);
+    }
+
+    public void iniciarPartidaConCarga() {
+        if (!modelo.puedeIniciarLobby()) {
+            return;
+        }
+        mostrarCargaBatalla("Sincronizando equipos...");
+        javax.swing.SwingUtilities.invokeLater(() -> control.iniciarPartidaDesdeLobby());
     }
 
     public void crearPartida() {
@@ -107,6 +120,7 @@ public class FrameConfiguracion extends JFrame implements ModeloJuego.Observador
     @Override
     public void mapearActualizacion() {
         if (!batallaAbierta && modelo.getEstadoActual() != null) {
+            mostrarCargaBatalla("Construyendo escenario...");
             abrirBatalla();
         }
     }
@@ -140,6 +154,11 @@ public class FrameConfiguracion extends JFrame implements ModeloJuego.Observador
             simuladorLobby = new FrameSimuladorLobby(modelo, control);
         }
         simuladorLobby.setVisible(true);
+    }
+
+    private void mostrarCargaBatalla(String estado) {
+        panelCargaBatalla.actualizarDatos(modelo.getJugadoresLobby(), estado);
+        cambiarPantalla("PanelCargaBatalla");
     }
 
     private void abrirBatalla() {
