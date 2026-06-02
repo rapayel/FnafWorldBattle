@@ -2,6 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+
 package org.fnafworld.mvc;
 
 import java.awt.BorderLayout;
@@ -19,7 +20,6 @@ import org.fnafworld.dominio.fachada.FachadaJuego;
 import org.fnafworld.dominio.fachada.IFachadaJuego;
 import org.fnafworld.dtos.AnimatronicoDTO;
 import org.fnafworld.dtos.JugadorDTO;
-import org.fnafworld.mvc.vista.PanelSelector;
 import org.fnafworld.mvc.vista.AnimatronicoSprite;
 import org.fnafworld.mvc.vista.FrameSimuladorLobby;
 import org.fnafworld.mvc.vista.FrameSimuladorRed;
@@ -172,11 +172,66 @@ public class FrameConfiguracion extends JFrame implements ModeloJuego.Observador
             }
             for (AnimatronicoDTO anim : jugador.getGrupo()) {
                 if (anim != null) {
-                    sprites.add(new AnimatronicoSprite(anim.getIdAnimatronico(), 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40));
+                    sprites.add(crearSpriteParaTipo(anim.getIdAnimatronico()));
                 }
             }
         }
         return sprites;
+    }
+
+    private AnimatronicoSprite crearSpriteParaTipo(String nombre) {
+        switch (nombre) {
+            case "Freddy":           return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40);
+            case "Bonnie":           return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40);
+            case "Chica":            return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40);
+            case "Foxy":             return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40);
+            case "WitheredFreddy":   return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40);
+            case "WitheredBonnie":   return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40);
+            case "WitheredChica":    return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40);
+            case "WitheredFoxy":     return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40);
+            case "NightmareFreddy":  return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40);
+            case "NightmareBonnie":  return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40);
+            case "NightmareChica":   return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 12, 2, 40, 40);
+            case "NightmareFoxy":    return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 12, 2, 40, 40);
+            case "ToyFreddy":        return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40);
+            case "ToyBonnie":        return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40);
+            case "ToyChica":         return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40);
+            case "Mangle":           return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40);
+            case "BalloonBoy":       return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40);
+            case "JJ":               return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 16, 2, 40, 40);
+            case "PhantomFreddy":    return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40);
+            case "PhantomChica":     return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40);
+            case "PhantomPuppet":    return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40);
+            case "PhantomBB":        return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40);
+            case "PhantomFoxy":      return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40);
+            case "PhantomMangle":    return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 12, 2, 2, 253, 250, 248, 11, 2, 40, 40);
+            case "ShadowFreddy":     return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40);
+            case "Puppet":           return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40);
+            case "GoldenFreddy":     return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40);
+            case "Paperpals":        return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40);
+            case "ShadowBonnie":     return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40);
+            case "Endo01":           return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40);
+            case "Endo02":           return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 11, 2, 40, 40);
+            case "Endoplush":        return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 12, 2, 2, 253, 250, 248, 11, 2, 40, 40);
+            case "Animdude":         return new AnimatronicoSprite(nombre, 2, 0, 250, 250, 10, 2, 2, 0, 250, 248, 10, 2, 40, 40);
+            case "Coffee":           return new AnimatronicoSprite(nombre, 4, 4, 199, 147, 9, 4, 4, 157, 197, 147, 12, 6, 40, 40);
+            case "CryingChild":      return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 10, 2, 2, 253, 250, 248, 12, 2, 40, 40);
+            case "Fredbear":         return new AnimatronicoSprite(nombre, 2, 3, 250, 298, 10, 2, 2, 303, 250, 298, 11, 2, 40, 40);
+            case "FuntimeFoxy":      return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 12, 2, 2, 253, 250, 248, 11, 2, 40, 45);
+            case "JackOBonnie":      return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 12, 2, 40, 40);
+            case "JackOChica":       return new AnimatronicoSprite(nombre, 4, 4, 249, 248, 11, 4, 4, 257, 254, 258, 12, 4, 40, 40);
+            case "MrChipper":        return new AnimatronicoSprite(nombre, 5, 4, 248, 249, 9, 5, 5, 257, 248, 249, 10, 5, 40, 40);
+            case "Nightmare":        return new AnimatronicoSprite(nombre, 2, 1, 250, 300, 12, 2, 2, 303, 250, 300, 13, 2, 40, 40);
+            case "NightmareFredbear":return new AnimatronicoSprite(nombre, 2, 1, 250, 300, 12, 2, 2, 303, 250, 300, 11, 2, 40, 40);
+            case "NightmareBB":      return new AnimatronicoSprite(nombre, 2, 3, 250, 247, 10, 2, 2, 253, 250, 247, 10, 2, 40, 40);
+            case "NightmarePuppet":  return new AnimatronicoSprite(nombre, 2, 0, 250, 248, 9, 2, 2, 252, 250, 248, 11, 2, 40, 40);
+            case "Plushtrap":        return new AnimatronicoSprite(nombre, 2, 1, 250, 248, 10, 2, 2, 505, 250, 248, 11, 2, 40, 40);
+            case "Purpleguy":        return new AnimatronicoSprite(nombre, 2, 3, 250, 247, 2, 2, 2, 253, 250, 248, 11, 2, 500, 40);
+            case "SpringBonnie":     return new AnimatronicoSprite(nombre, 2, 1, 250, 300, 12, 2, 2, 303, 250, 300, 13, 2, 40, 40);
+            case "Springtrap":       return new AnimatronicoSprite(nombre, 2, 3, 250, 247, 12, 2, 2, 253, 250, 248, 11, 2, 40, 40);
+            case "TheFan":           return new AnimatronicoSprite(nombre, 2, 1, 100, 100, 5, 2, 2, 1, 100, 100, 5, 2, 40, 40);
+            default:                 return new AnimatronicoSprite(nombre, 2, 3, 250, 248, 11, 2, 2, 253, 250, 248, 11, 2, 40, 40);
+        }
     }
 
     private static class DatosJugador {

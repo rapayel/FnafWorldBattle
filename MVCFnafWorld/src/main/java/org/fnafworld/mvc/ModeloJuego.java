@@ -2,6 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+
 package org.fnafworld.mvc;
 
 import java.util.List;
@@ -170,7 +171,8 @@ public class ModeloJuego {
     }
 
     private void notificarObservadores() {
-        for (Observador o : observadores) {
+        List<Observador> copia = new ArrayList<>(observadores);
+        for (Observador o : copia) {
             o.mapearActualizacion();
         }
     }
