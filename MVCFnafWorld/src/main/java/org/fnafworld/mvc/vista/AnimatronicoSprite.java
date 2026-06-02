@@ -89,7 +89,7 @@ public class AnimatronicoSprite {
             BufferedImage lapidaTemp = ImageIO.read(getClass().getResourceAsStream("/extras/lapida.png"));
             this.derrotado = optimizarImagen(lapidaTemp);
             
-        } catch (IOException | NullPointerException e) {
+        } catch (IOException | RuntimeException e) {
             System.err.println("Error al cargar recursos: " + e.getMessage());
         }
     }

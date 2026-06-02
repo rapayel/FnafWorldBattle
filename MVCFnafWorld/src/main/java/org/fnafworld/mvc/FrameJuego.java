@@ -33,7 +33,7 @@ public class FrameJuego extends JFrame implements ModeloJuego.Observador {
         this.modelo = modelo;
         
         this.modelo.registrarObservador(this);
-        Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/iconos/iconojuego.png"));
+        Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/extras/iconojuego.png"));
         setIconImage(icono);
         this.setTitle("FNAF World - Modo Batalla");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

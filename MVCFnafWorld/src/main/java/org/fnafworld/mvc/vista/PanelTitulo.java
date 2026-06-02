@@ -103,8 +103,8 @@ public class PanelTitulo extends JPanel implements ActionListener {
         add(btnCrearPartida);
         add(btnUnirsePartida);
 
-        btnCrearPartida.addActionListener(e -> parent.cambiarPantalla("PanelSelector"));
-btnUnirsePartida.addActionListener(e -> parent.cambiarPantalla("PanelSelector"));
+        btnCrearPartida.addActionListener(e -> parent.crearPartida());
+        btnUnirsePartida.addActionListener(e -> parent.unirsePartida());
     }
 
     private JButton crearBotonEstilizado(String texto, int x, int y, int ancho, int alto) {
