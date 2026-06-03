@@ -8,11 +8,12 @@ import javax.sound.sampled.Clip;
 
 public class SoundPool {
 
-    private Clip[] clips;
-    private int index = 0;
+    private final Clip[] clips;
+    private int index;
 
     public SoundPool(Clip[] clips) {
         this.clips = clips;
+        this.index = 0;
     }
 
     public synchronized void play() {

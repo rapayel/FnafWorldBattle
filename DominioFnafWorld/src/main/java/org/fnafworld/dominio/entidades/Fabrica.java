@@ -110,7 +110,7 @@ public class Fabrica {
                 return anim(id, tipo, turnoAnimatronico, habilidadesShadowBonnie());
             case Plushtrap:
                 return anim(id, tipo, turnoAnimatronico, habilidadesPlushtrap());
-            case Sprintrap:
+            case Springtrap:
                 return anim(id, tipo, turnoAnimatronico, habilidadesSpringtrap());
             case CryingChild:
                 return anim(id, tipo, turnoAnimatronico, habilidadesCryingChild());

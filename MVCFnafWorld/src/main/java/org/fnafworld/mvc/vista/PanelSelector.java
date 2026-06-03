@@ -75,7 +75,7 @@ public class PanelSelector extends JPanel implements ActionListener {
                 return "/iconos/balloonboy_ico.png";
             case MrChipper:
                 return "/iconos/MrChipper_ico.png";
-            case Sprintrap:
+            case Springtrap:
                 return "/iconos/springtrap_ico.png";
             default:
                 return "/iconos/" + tipo.name().toLowerCase() + "_ico.png";

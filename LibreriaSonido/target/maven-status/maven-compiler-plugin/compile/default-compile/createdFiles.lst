@@ -1,2 +1,4 @@
 org\fnafworld\sonido\AudioManager.class
+org\fnafworld\sonido\SoundEffect.class
 org\fnafworld\sonido\SoundPool.class
+org\fnafworld\sonido\IAudioManager.class
