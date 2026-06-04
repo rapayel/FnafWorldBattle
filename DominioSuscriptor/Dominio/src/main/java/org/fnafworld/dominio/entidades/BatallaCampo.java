@@ -4,7 +4,10 @@ import java.util.*;
 import org.fnafworld.Equipo;
 import org.fnafworld.TipoHabilidad;
 import org.fnafworld.dtos.*;
-
+/**
+ * 
+ * @author lagar
+ */
 public class BatallaCampo {
     private static final int CANTIDAD_MINIMA_JUGADORES = 2;
     private static final int CANTIDAD_MAXIMA_JUGADORES = 4;
@@ -53,7 +56,7 @@ public class BatallaCampo {
     private static final TipoHabilidad[] HABILIDADES_PRIZE_BALL2 = {
         TipoHabilidad.ToxicBalloon, TipoHabilidad.ToxicBite, TipoHabilidad.ToxicBite2,
         TipoHabilidad.BadPizza, TipoHabilidad.PizzaWheel, TipoHabilidad.PizzaWheel2,
-        TipoHabilidad.BashJam, TipoHabilidad.Jumpscare, TipoHabilidad.Jumscare,
+        TipoHabilidad.BashJam, TipoHabilidad.Jumpscare, 
         TipoHabilidad.HotCheese, TipoHabilidad.HotCheese2, TipoHabilidad.Munchies,
         TipoHabilidad.Poppers, TipoHabilidad.EyeBeam, TipoHabilidad.SpringLocks,
         TipoHabilidad.Freddles, TipoHabilidad.MegaBite, TipoHabilidad.Balloons,
@@ -455,7 +458,6 @@ public class BatallaCampo {
                 atacante.recibirDanioDirecto(CASTIGO_BASH_JAM);
                 break;
             case Jumpscare:
-            case Jumscare:
                 noquearVariosAleatorios(objetivosContrarios, 3);
                 break;
             case HotCheese:
@@ -999,7 +1001,6 @@ public class BatallaCampo {
                 || tipo == TipoHabilidad.PizzaWheel2
                 || tipo == TipoHabilidad.BashJam
                 || tipo == TipoHabilidad.Jumpscare
-                || tipo == TipoHabilidad.Jumscare
                 || tipo == TipoHabilidad.HotCheese
                 || tipo == TipoHabilidad.HotCheese2
                 || tipo == TipoHabilidad.Munchies

@@ -15,7 +15,7 @@ public enum TipoHabilidad {
     GloomBalloon, GloomSong, Sludge, RainyDay, RainyDay2, Th4Wall, Slasher, 
     Cupcake, HappyJam, HappyJam2, PartyFavors, RegenSong, BubbleBreath,
     ToxicBalloon, ToxicBite, ToxicBite2, BadPizza,
-    PizzaWheel, PizzaWheel2, BashJam, Jumpscare, Jumscare, HotCheese, HotCheese2, Munchies, Poppers, EyeBeam, SpringLocks, Freddles, MegaBite, Balloons, MegaVirus, NeonWall2,
+    PizzaWheel, PizzaWheel2, BashJam, Jumpscare, HotCheese, HotCheese2, Munchies, Poppers, EyeBeam, SpringLocks, Freddles, MegaBite, Balloons, MegaVirus, NeonWall2,
     Waterhose, Waterhose2, Unscrew, Unscrew2,
     Birthday, CosmicSong, PowerSong, ArmorSong, SpeedSong
 }
