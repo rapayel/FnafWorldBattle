@@ -21,6 +21,12 @@ public class Lobby {
     private BatallaCampo batallaCampo;
 
     public Lobby(String urlCampo, String urlMusica) {
+        if (urlCampo == null || urlCampo.trim().isEmpty()) {
+            throw new IllegalArgumentException("La URL del campo no puede ser nula o vacía.");
+        }
+        if (urlMusica == null || urlMusica.trim().isEmpty()) {
+            throw new IllegalArgumentException("La URL de la música no puede ser nula o vacía.");
+        }
         this.jugadores = new LinkedHashMap<>();
         this.urlCampo = urlCampo;
         this.urlMusica = urlMusica;
