@@ -3,19 +3,106 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Enum.java to edit this template
  */
 package org.fnafworld;
-
 /**
- *
+ * 
  * @author lagar
  */
 public enum TipoHabilidad {
-    MicToss, Hook, Bite, Bite2, 
-    JackOBomb, Buzzsaw, Balloons2,
-    PrizeBall, PrizeBall2, MisteryBox, MisteryBox2, EscKey, Haunting, EndoArmy, GiftBoxes, NeonWall, MimicBall, HocusPocus,
-    GloomBalloon, GloomSong, Sludge, RainyDay, RainyDay2, Th4Wall, Slasher, 
-    Cupcake, HappyJam, HappyJam2, PartyFavors, RegenSong, BubbleBreath,
-    ToxicBalloon, ToxicBite, ToxicBite2, BadPizza,
-    PizzaWheel, PizzaWheel2, BashJam, Jumpscare, HotCheese, HotCheese2, Munchies, Poppers, EyeBeam, SpringLocks, Freddles, MegaBite, Balloons, MegaVirus, NeonWall2,
-    Waterhose, Waterhose2, Unscrew, Unscrew2,
-    Birthday, CosmicSong, PowerSong, ArmorSong, SpeedSong
+    MicToss(true, true, false),
+    Hook(true, true, false),
+    Bite(true, true, false),
+    Bite2(true, true, false),
+    JackOBomb(true, true, false),
+    Buzzsaw(true, true, false),
+    Balloons2(true, true, false),
+    PrizeBall(true, false, false),
+    PrizeBall2(true, false, false),
+    MisteryBox(true, false, false),
+    MisteryBox2(true, false, false),
+    EscKey(true, false, false),
+    Haunting(true, false, false),
+    EndoArmy(true, false, false),
+    GiftBoxes(true, false, false),
+    NeonWall(true, false, false),
+    MimicBall(true, false, false),
+    HocusPocus(true, false, false),
+    GloomBalloon(true, true, false),
+    GloomSong(true, true, false),
+    Sludge(true, true, false),
+    RainyDay(true, true, false),
+    RainyDay2(true, true, false),
+    Th4Wall(true, true, false),
+    Slasher(true, true, false),
+    Cupcake(true, true, false),
+    HappyJam(true, true, false),
+    HappyJam2(true, true, false),
+    PartyFavors(true, true, false),
+    RegenSong(true, true, false),
+    BubbleBreath(true, true, false),
+    ToxicBalloon(true, false, true),
+    ToxicBite(true, false, true),
+    ToxicBite2(true, false, true),
+    BadPizza(true, false, true),
+    PizzaWheel(true, false, true),
+    PizzaWheel2(true, false, true),
+    BashJam(true, false, true),
+    Jumpscare(true, false, true),
+    HotCheese(true, false, true),
+    HotCheese2(true, false, true),
+    Munchies(true, false, true),
+    Poppers(true, false, true),
+    EyeBeam(true, false, true),
+    SpringLocks(true, false, true),
+    Freddles(true, false, true),
+    MegaBite(true, false, true),
+    Balloons(true, false, true),
+    MegaVirus(true, false, true),
+    NeonWall2(true, false, true),
+    Waterhose(true, false, true),
+    Waterhose2(true, false, true),
+    Unscrew(true, false, true),
+    Unscrew2(true, false, true),
+    Birthday(true, false, true),
+    CosmicSong(true, false, true),
+    PowerSong(true, false, true),
+    ArmorSong(true, false, true),
+    SpeedSong(true, false, true);
+
+    private final boolean esAtaque;
+    private final boolean enPrizeBall;
+    private final boolean enPrizeBall2;
+
+    TipoHabilidad(boolean esAtaque, boolean enPrizeBall, boolean enPrizeBall2) {
+        this.esAtaque = esAtaque;
+        this.enPrizeBall = enPrizeBall;
+        this.enPrizeBall2 = enPrizeBall2;
+    }
+
+    public boolean esAtaque() {
+        return esAtaque;
+    }
+
+    public boolean isEnPrizeBall() {
+        return enPrizeBall;
+    }
+
+    public boolean isEnPrizeBall2() {
+        return enPrizeBall2;
+    }
+
+    public static TipoHabilidad[] enPrizeBall() {
+        java.util.List<TipoHabilidad> lista = new java.util.ArrayList<>();
+        for (TipoHabilidad t : values()) {
+            if (t.enPrizeBall) lista.add(t);
+        }
+        return lista.toArray(new TipoHabilidad[0]);
+    }
+
+    public static TipoHabilidad[] enPrizeBall2() {
+        java.util.List<TipoHabilidad> lista = new java.util.ArrayList<>();
+        for (TipoHabilidad t : values()) {
+            if (t.enPrizeBall2) lista.add(t);
+        }
+        return lista.toArray(new TipoHabilidad[0]);
+    }
 }

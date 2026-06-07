@@ -185,7 +185,7 @@ public enum TipoAnimatronico {
     ToyFoxy(75,1000, new Habilidad[]{
         new Habilidad(0, TipoHabilidad.HappyJam2, "Cura completamente al aliado más dañado."),
         new Habilidad(75, TipoHabilidad.CosmicSong, "Aplica daño cósmico acumulativo a todos los enemigos."),
-        new Habilidad(0, TipoHabilidad.GiftBoxes, "Elimina el poder de las habilidades de un enemigo aleatorio temporalmente.")
+        new Habilidad(0, TipoHabilidad.GiftBoxes, "Con 15% de probabilidad, revive hasta 2 aliados caídos al 50% de vida.")
     }),
     NightmareFredbear(100,1000, new Habilidad[]{
         new Habilidad(85, TipoHabilidad.ToxicBite2, "Muerde a hasta 3 enemigos y los envenena."),
@@ -210,42 +210,43 @@ public enum TipoAnimatronico {
     JackOBonnie(88,1000, new Habilidad[]{
         new Habilidad(95, TipoHabilidad.JackOBomb, "Daña a todos los enemigos con daño bajo."),
         new Habilidad(0, TipoHabilidad.Haunting, "Noquea a 1 enemigo aleatorio (pierde su turno)."),
-         new Habilidad(0, TipoHabilidad.Slasher, "Con 15% de probabilidad, revive hasta 2 aliados caídos al 50% de vida.")
+         new Habilidad(120, TipoHabilidad.Slasher, "Con 10% de probabilidad, elimina instantáneamente a 1 enemigo aleatorio.")
     }),
     JackOChica(82,1000, new Habilidad[]{
-        new Habilidad(85, TipoHabilidad.ToxicBite2, "Muerde a hasta 3 enemigos y los envenena."),
-        new Habilidad(0, TipoHabilidad.RainyDay2, "Reduce la armadura de todos los enemigos y les inflige daño pequeño."),
-        new Habilidad(100, TipoHabilidad.MegaBite, "Ataca a todos los enemigos con daño masivo, pero el atacante se sacrifica tras usarla."),
+        new Habilidad(95, TipoHabilidad.JackOBomb, "Daña a todos los enemigos con daño bajo."),
+        new Habilidad(50, TipoHabilidad.Munchies, "Aplica daño pasivo a todos los enemigos y también a 4 aliados aleatorios."),
+        new Habilidad(85, TipoHabilidad.Buzzsaw, "Ataca entre 1 y 4 enemigos aleatorios con daño moderado.")
     }),
-    Animdude(105,1000, new Habilidad[]{
-        new Habilidad(85, TipoHabilidad.ToxicBite2, "Muerde a hasta 3 enemigos y los envenena."),
-        new Habilidad(0, TipoHabilidad.RainyDay2, "Reduce la armadura de todos los enemigos y les inflige daño pequeño."),
-        new Habilidad(100, TipoHabilidad.MegaBite, "Ataca a todos los enemigos con daño masivo, pero el atacante se sacrifica tras usarla."),
+    Animdude(55,1000, new Habilidad[]{
+        new Habilidad(0, TipoHabilidad.NeonWall2, "Aplica el escudo NeonWall a un aliado aleatorio."),
+        new Habilidad(110, TipoHabilidad.MegaVirus, "Envenena a todos los animatrónicos en el campo (aliados y enemigos)."),
+        new Habilidad(130, TipoHabilidad.Th4Wall, "Ataca hasta 6 enemigos aleatorios con daño considerable.")
     }),
-    MrChipper(105,1000, new Habilidad[]{
-        new Habilidad(85, TipoHabilidad.ToxicBite2, "Muerde a hasta 3 enemigos y los envenena."),
-        new Habilidad(0, TipoHabilidad.RainyDay2, "Reduce la armadura de todos los enemigos y les inflige daño pequeño."),
-        new Habilidad(100, TipoHabilidad.MegaBite, "Ataca a todos los enemigos con daño masivo, pero el atacante se sacrifica tras usarla."),
+    MrChipper(60,1000, new Habilidad[]{
+        new Habilidad(50, TipoHabilidad.Hook, "Ataca a un enemigo aleatorio con daño muy variable (entre 20 y 115)."),
+        new Habilidad(0, TipoHabilidad.HocusPocus, "Potencia a todos los aliados sacrificando al atacante."),
+        new Habilidad(85, TipoHabilidad.Buzzsaw, "Ataca entre 1 y 4 enemigos aleatorios con daño moderado.")
     }),
-    NightmareBB(105,1000, new Habilidad[]{
-        new Habilidad(85, TipoHabilidad.ToxicBite2, "Muerde a hasta 3 enemigos y los envenena."),
-        new Habilidad(0, TipoHabilidad.RainyDay2, "Reduce la armadura de todos los enemigos y les inflige daño pequeño."),
+    NightmareBB(60,1000, new Habilidad[]{
         new Habilidad(100, TipoHabilidad.MegaBite, "Ataca a todos los enemigos con daño masivo, pero el atacante se sacrifica tras usarla."),
+        new Habilidad(0, TipoHabilidad.BubbleBreath, "Protege a todos los aliados contra el veneno durante varios turnos."),
+        new Habilidad(65, TipoHabilidad.Balloons2, " Golpea a un enemigo aleatorio con 130 de daño.")
+        
     }),
-    NightmarePuppet(105,1000, new Habilidad[]{
-        new Habilidad(85, TipoHabilidad.ToxicBite2, "Muerde a hasta 3 enemigos y los envenena."),
-        new Habilidad(0, TipoHabilidad.RainyDay2, "Reduce la armadura de todos los enemigos y les inflige daño pequeño."),
-        new Habilidad(100, TipoHabilidad.MegaBite, "Ataca a todos los enemigos con daño masivo, pero el atacante se sacrifica tras usarla."),
+    NightmarePuppet(40,1000, new Habilidad[]{
+        new Habilidad(0, TipoHabilidad.PrizeBall2,"Ejecuta una habilidad aleatoria de la lista avanzada (habilidades más poderosas)."),
+        new Habilidad(0, TipoHabilidad.BubbleBreath, "Protege a todos los aliados contra el veneno durante varios turnos."),
+        new Habilidad(130, TipoHabilidad.Th4Wall, "Ataca hasta 6 enemigos aleatorios con daño considerable.")
     }),
-    Coffee(105,1000, new Habilidad[]{
-        new Habilidad(85, TipoHabilidad.ToxicBite2, "Muerde a hasta 3 enemigos y los envenena."),
-        new Habilidad(0, TipoHabilidad.RainyDay2, "Reduce la armadura de todos los enemigos y les inflige daño pequeño."),
-        new Habilidad(100, TipoHabilidad.MegaBite, "Ataca a todos los enemigos con daño masivo, pero el atacante se sacrifica tras usarla."),
+    Coffee(45,1000, new Habilidad[]{
+        new Habilidad(0, TipoHabilidad.GiftBoxes, "Con 15% de probabilidad, revive hasta 2 aliados caídos al 50% de vida."),
+        new Habilidad(110, TipoHabilidad.MegaVirus, "Envenena a todos los animatrónicos en el campo (aliados y enemigos)."),
+        new Habilidad(0, TipoHabilidad.Unscrew2, "10% de probabilidad de eliminar instantáneamente a hasta 2 enemigos aleatorios."),
     }),
     PurpleGuy(50,1000, new Habilidad[]{
         new Habilidad(0, TipoHabilidad.SpeedSong,  " Aumenta fuerza y armadura de un aliado aleatorio en 45."),
         new Habilidad(0, TipoHabilidad.HocusPocus, "Potencia a todos los aliados sacrificando al atacante."),
-        new Habilidad(0, TipoHabilidad.Slasher, "Con 15% de probabilidad, revive hasta 2 aliados caídos al 50% de vida.")
+        new Habilidad(120, TipoHabilidad.Slasher, "Con 10% de probabilidad, elimina instantáneamente a 1 enemigo aleatorio.")
     });
     
 
