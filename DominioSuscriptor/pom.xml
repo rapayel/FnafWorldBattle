@@ -7,6 +7,10 @@
     <packaging>pom</packaging>
     <modules>
         <module>Dominio</module>
+        <module>Serializador</module>
+        <module>ComponenteConexion</module>
+        <module>Evento</module>
+        <module>TraductorDominio</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

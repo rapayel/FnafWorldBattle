@@ -2,3 +2,7 @@
 /DominioFnafWorld/target/
 /DominioSuscriptor/Dominio/target/
 MVCFnafWorld.zip
+/DominioSuscriptor/Serializador/target/
+/DominioSuscriptor/ComponenteConexion/target/
+/DominioSuscriptor/Evento/target/
+/DominioSuscriptor/TraductorDominio/target/

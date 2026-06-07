@@ -41,7 +41,7 @@ public class Lobby {
         JugadorLobbyDTO nuevoJugador = new JugadorLobbyDTO(
             dto.getId(), 
             dto.getNombre(), 
-            dto.getUrlAvatar(), 
+            dto.getAvatar(), 
             null, 
             new AnimatronicoDTO[0], 
             false
@@ -63,7 +63,7 @@ public class Lobby {
         JugadorLobbyDTO actualizado = new JugadorLobbyDTO(
             jugador.getId(), 
             jugador.getNombre(), 
-            jugador.getUrlAvatar(), 
+            jugador.getAvatar(), 
             equipo, 
             jugador.getGrupo(), 
             jugador.isListo()
@@ -85,7 +85,7 @@ public class Lobby {
         JugadorLobbyDTO actualizado = new JugadorLobbyDTO(
             jugador.getId(), 
             jugador.getNombre(), 
-            jugador.getUrlAvatar(), 
+            jugador.getAvatar(), 
             jugador.getEquipo(), 
             grupo, 
             listo
@@ -101,7 +101,7 @@ public class Lobby {
             listaJugadoresDTO.add(new JugadorDTO(
                 jl.getId(), 
                 jl.getNombre(), 
-                jl.getUrlAvatar(), 
+                jl.getAvatar(), 
                 jl.getGrupo(), 
                 false, 
                 jl.getEquipo()
@@ -130,7 +130,7 @@ public class Lobby {
             Jugador jugadorReal = new Jugador(
                 jl.getId(),
                 jl.getNombre(),
-                jl.getUrlAvatar(),
+                jl.getAvatar(),
                 grupoEntidad,
                 jl.getEquipo()
             );
@@ -239,7 +239,7 @@ public class Lobby {
         return new JugadorDTO(
             jugador.getId(),
             jugador.getNombre(),
-            jugador.getUrlAvatar(),
+            jugador.getAvatar(),
             grupoDTO,
             jugador.miTurno(),
             jugador.getEquipo()

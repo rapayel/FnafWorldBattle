@@ -12,7 +12,6 @@ import org.fnafworld.Equipo;
  * @author lagar
  */
 public class FachadaJuego implements IFachadaJuego {
- 
     private Lobby lobby;
  
     @Override

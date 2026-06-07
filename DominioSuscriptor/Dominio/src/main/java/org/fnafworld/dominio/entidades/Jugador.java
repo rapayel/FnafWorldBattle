@@ -4,6 +4,7 @@
  */
 package org.fnafworld.dominio.entidades;
 
+import java.awt.image.BufferedImage;
 import org.fnafworld.Equipo;
 
 /**
@@ -13,15 +14,15 @@ import org.fnafworld.Equipo;
 public class Jugador {
     private String id; 
     private String nombre;
-    private String urlAvatar;
+    private BufferedImage avatar;
     private Animatronico[] grupo;
     private boolean miTurno;
     private Equipo equipo;
 
-    public Jugador(String id, String nombre, String urlAvatar, Animatronico[] grupo, Equipo equipo) {
+    public Jugador(String id, String nombre, BufferedImage avatar, Animatronico[] grupo, Equipo equipo) {
         this.id = id;
         this.nombre = nombre;
-        this.urlAvatar = urlAvatar;
+        this.avatar = avatar;
         this.grupo = grupo;
         this.equipo = equipo;
     }       
@@ -58,8 +59,8 @@ public class Jugador {
         return nombre;
     }
 
-    public String getUrlAvatar() {
-        return urlAvatar;
+    public BufferedImage getAvatar() {
+        return avatar;
     }
 
     public Equipo getEquipo() {
