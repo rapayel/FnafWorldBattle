@@ -6,9 +6,10 @@ import java.util.List;
 import java.util.Map;
 import org.fnafworld.Equipo;
 import org.fnafworld.dtos.*;
+import org.fnafworld.ErrorLobby;
+
 /**
- * 
- * @author lagar
+ * * @author lagar
  */
 public class Lobby {
     public static final int MINIMO_JUGADORES = 2;
@@ -34,14 +35,17 @@ public class Lobby {
     }
 
     public JugadorLobbyDTO unirsePartida(JugadorDTO dto) {
+        if (dto == null || dto.getId() == null) {
+            return mappearErrorJugador(dto, ErrorLobby.JUGADOR_INVALIDO);
+        }
         if (inicializada) {
-            throw new IllegalStateException("No puedes unirte, la partida ya ha iniciado.");
+            return mappearErrorJugador(dto, ErrorLobby.PARTIDA_YA_INICIADA);
         }
         if (jugadores.size() >= MAXIMO_JUGADORES) {
-            throw new IllegalStateException("El lobby está lleno.");
+            return mappearErrorJugador(dto, ErrorLobby.LOBBY_LLENO);
         }
         if (jugadores.containsKey(dto.getId())) {
-            throw new IllegalArgumentException("El jugador ya está en el lobby.");
+            return mappearErrorJugador(dto, ErrorLobby.JUGADOR_YA_EN_LOBBY);
         }
 
         JugadorLobbyDTO nuevoJugador = new JugadorLobbyDTO(
@@ -58,12 +62,23 @@ public class Lobby {
     }
 
     public JugadorLobbyDTO seleccionarEquipo(String idJugador, Equipo equipo) {
+        if (idJugador == null) {
+            JugadorDTO errorDto = new JugadorDTO(null, null, null, null, false, equipo);
+            return mappearErrorJugador(errorDto, ErrorLobby.JUGADOR_INVALIDO);
+        }
+        
         JugadorLobbyDTO jugador = jugadores.get(idJugador);
         if (jugador == null) {
-            throw new IllegalArgumentException("El jugador no existe en el lobby.");
+            JugadorDTO errorDto = new JugadorDTO(idJugador, null, null, null, false, equipo);
+            return mappearErrorJugador(errorDto, ErrorLobby.JUGADOR_NO_EXISTE);
         }
         if (inicializada) {
-            throw new IllegalStateException("La partida ya inició.");
+            JugadorDTO errorDto = new JugadorDTO(jugador.getId(), jugador.getNombre(), jugador.getAvatar(), jugador.getGrupo(), false, jugador.getEquipo());
+            return mappearErrorJugador(errorDto, ErrorLobby.PARTIDA_YA_INICIADA);
+        }
+        if (equipo == null) {
+            JugadorDTO errorDto = new JugadorDTO(jugador.getId(), jugador.getNombre(), jugador.getAvatar(), jugador.getGrupo(), false, null);
+            return mappearErrorJugador(errorDto, ErrorLobby.EQUIPO_INVALIDO);
         }
 
         JugadorLobbyDTO actualizado = new JugadorLobbyDTO(
@@ -80,12 +95,23 @@ public class Lobby {
     }
 
     public JugadorLobbyDTO establecerListo(String idJugador, AnimatronicoDTO[] grupo, boolean listo) {
+        if (idJugador == null) {
+            JugadorDTO errorDto = new JugadorDTO(null, null, null, grupo, false, null);
+            return mappearErrorJugador(errorDto, ErrorLobby.JUGADOR_INVALIDO);
+        }
+
         JugadorLobbyDTO jugador = jugadores.get(idJugador);
         if (jugador == null) {
-            throw new IllegalArgumentException("El jugador no existe en el lobby.");
+            JugadorDTO errorDto = new JugadorDTO(idJugador, null, null, grupo, false, null);
+            return mappearErrorJugador(errorDto, ErrorLobby.JUGADOR_NO_EXISTE);
         }
         if (jugador.getEquipo() == null) {
-            throw new IllegalStateException("Debes seleccionar un equipo antes de ponerte listo.");
+            JugadorDTO errorDto = new JugadorDTO(jugador.getId(), jugador.getNombre(), jugador.getAvatar(), grupo, false, null);
+            return mappearErrorJugador(errorDto, ErrorLobby.EQUIPO_NO_SELECCIONADO);
+        }
+        if (listo && !grupoCompleto(grupo)) {
+            JugadorDTO errorDto = new JugadorDTO(jugador.getId(), jugador.getNombre(), jugador.getAvatar(), grupo, false, jugador.getEquipo());
+            return mappearErrorJugador(errorDto, ErrorLobby.GRUPO_INVALIDO);
         }
 
         JugadorLobbyDTO actualizado = new JugadorLobbyDTO(
@@ -123,7 +149,18 @@ public class Lobby {
     }
 
     public ResultadoAtaqueDTO iniciarPartida() {
-        validarPuedeIniciar();
+        if (inicializada) {
+            return new ResultadoAtaqueDTO(null, null, null, null, null, null, ErrorLobby.PARTIDA_YA_INICIADA);
+        }
+        if (jugadores.size() < MINIMO_JUGADORES) {
+            return new ResultadoAtaqueDTO(null, null, null, null, null, null, ErrorLobby.JUGADORES_INSUFICIENTES);
+        }
+        if (!todosListos()) {
+            return new ResultadoAtaqueDTO(null, null, null, null, null, null, ErrorLobby.JUGADORES_NO_LISTOS);
+        }
+        if (!todosConGrupoCompleto()) {
+            return new ResultadoAtaqueDTO(null, null, null, null, null, null, ErrorLobby.GRUPO_INVALIDO);
+        }
 
         List<Jugador> jugadoresEntidad = new ArrayList<>();
         for (JugadorLobbyDTO jl : jugadores.values()) {
@@ -151,16 +188,14 @@ public class Lobby {
 
     public ResultadoAtaqueDTO atacar(AtaqueDTO ataque) {
         if (!inicializada || batallaCampo == null) {
-            throw new IllegalStateException("La batalla no se ha inicializado.");
+            return new ResultadoAtaqueDTO(null, null, null, null, null, null, ErrorLobby.BATALLA_NO_INICIADA);
         }
+        if (ataque == null || ataque.getIdJugador() == null || ataque.getIdAnimatronico() == null || ataque.getTipoHabilidad() == null) {
+            return new ResultadoAtaqueDTO(null, null, null, null, null, null, ErrorLobby.ATAQUE_INVALIDO);
+        }
+        
         batallaCampo.atacar(ataque.getIdJugador(), ataque.getIdAnimatronico(), ataque.getTipoHabilidad());
         return construirResultado();
-    }
-
-    private void validarPuedeIniciar() {
-        if (!puedeIniciar()) {
-            throw new IllegalStateException("La partida requiere de 2 a 4 jugadores, todos listos y con grupos completos.");
-        }
     }
 
     private boolean puedeIniciar() {
@@ -231,9 +266,10 @@ public class Lobby {
             atacanteDTO,
             afectadosDTO,
             jugadoresDTO,
+            efectos,
             batallaCampo.getIdJugadorTurno(),
             batallaCampo.getEquipoGanador(),
-            efectos
+            null
         );
     }
 
@@ -291,5 +327,15 @@ public class Lobby {
             dto.getVidaTotal(),
             habilidadesEntidad
         );
+    }
+    
+    private JugadorLobbyDTO mappearErrorJugador(JugadorDTO dto, ErrorLobby error) {
+        String id = (dto != null) ? dto.getId() : null;
+        String nombre = (dto != null) ? dto.getNombre() : null;
+        byte[] avatar = (dto != null) ? dto.getAvatar() : null;
+        Equipo equipo = (dto != null) ? dto.getEquipo() : null;
+        AnimatronicoDTO[] grupo = (dto != null) ? dto.getGrupo() : null;
+        
+        return new JugadorLobbyDTO(id, nombre, avatar, equipo, grupo, false);
     }
 }

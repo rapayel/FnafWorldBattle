@@ -6,15 +6,25 @@ package org.fnafworld.evento;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.fnafworld.dtos.AtaqueDTO;
 
 /**
  *
  * @author lagar
  */
-public class EventoObtenerEstadoLobby extends EventoAccion {
+public class EventoAtaqueError extends EventoError {
+    private AtaqueDTO errorAtaque;
 
     @JsonCreator
-    public EventoObtenerEstadoLobby(@JsonProperty("id") String id) {
+    public EventoAtaqueError(
+        @JsonProperty("errorAtaque") AtaqueDTO errorAtaque, 
+        @JsonProperty("id") String id
+    ) {
         super(id);
+        this.errorAtaque = errorAtaque;
+    }
+
+    public AtaqueDTO getErrorAtaque() {
+        return errorAtaque;
     }
 }

@@ -4,8 +4,13 @@
  */
 package org.fnafworld;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.fnafworld.dominio.entidades.Habilidad; 
-
+/**
+ * 
+ * @author lagar
+ */
+@JsonFormat(shape = JsonFormat.Shape.STRING)
 public enum TipoAnimatronico {
     Freddy(50, 1000, new Habilidad[]{ 
         new Habilidad(35, TipoHabilidad.MicToss, "Golpea a un enemigo aleatorio con daño variable (entre 45 y 85)."),

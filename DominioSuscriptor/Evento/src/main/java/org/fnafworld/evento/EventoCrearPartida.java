@@ -4,18 +4,26 @@
  */
 package org.fnafworld.evento;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.fnafworld.dtos.JugadorDTO;
 
 /**
  *
  * @author lagar
  */
-public class EventoCrearPartida extends EventoAccion{
+public class EventoCrearPartida extends EventoAccion {
     private String urlFondo;
     private String urlMusica;
     private JugadorDTO jugadorCreado;
 
-    public EventoCrearPartida(String urlFondo, String urlMusica, JugadorDTO jugadorCreado, String id) {
+    @JsonCreator
+    public EventoCrearPartida(
+        @JsonProperty("urlFondo") String urlFondo, 
+        @JsonProperty("urlMusica") String urlMusica, 
+        @JsonProperty("jugadorCreado") JugadorDTO jugadorCreado, 
+        @JsonProperty("id") String id
+    ) {
         super(id);
         this.urlFondo = urlFondo;
         this.urlMusica = urlMusica;

@@ -4,16 +4,22 @@
  */
 package org.fnafworld.evento;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.fnafworld.dtos.AtaqueDTO;
 
 /**
  *
  * @author lagar
  */
-public class EventoAtacar extends EventoAccion{
+public class EventoAtacar extends EventoAccion {
     private AtaqueDTO ataque;
 
-    public EventoAtacar(AtaqueDTO ataque, String id) {
+    @JsonCreator
+    public EventoAtacar(
+        @JsonProperty("ataque") AtaqueDTO ataque, 
+        @JsonProperty("id") String id
+    ) {
         super(id);
         this.ataque = ataque;
     }

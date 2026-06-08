@@ -3,10 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Enum.java to edit this template
  */
 package org.fnafworld;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 
  * @author lagar
  */
+@JsonFormat(shape = JsonFormat.Shape.STRING)
 public enum TipoHabilidad {
     MicToss(true, true, false),
     Hook(true, true, false),

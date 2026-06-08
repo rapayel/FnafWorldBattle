@@ -2,12 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package org.fnafworld.dtos;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.fnafworld.TipoAnimatronico;
 /**
  * 
@@ -23,12 +21,23 @@ public class AnimatronicoDTO {
     private final int vidaTotal;
     private final HabilidadDTO[] habilidades;
     private final boolean isVivo;
-
+    
     public AnimatronicoDTO(String idAnimatronico, TipoAnimatronico tipo, boolean turnoAnimatronico, int fuerza, int vidaActual, int vidaTotal, HabilidadDTO[] habilidades, boolean isVivo) {
         this(idAnimatronico, tipo, turnoAnimatronico, fuerza, 0, vidaActual, vidaTotal, habilidades, isVivo);
     }
 
-    public AnimatronicoDTO(String idAnimatronico, TipoAnimatronico tipo, boolean turnoAnimatronico, int fuerza, int armadura, int vidaActual, int vidaTotal, HabilidadDTO[] habilidades, boolean isVivo) {
+    @JsonCreator
+    public AnimatronicoDTO(
+        @JsonProperty("idAnimatronico") String idAnimatronico, 
+        @JsonProperty("tipo") TipoAnimatronico tipo, 
+        @JsonProperty("turnoAnimatronico") boolean turnoAnimatronico, 
+        @JsonProperty("fuerza") int fuerza, 
+        @JsonProperty("armadura") int armadura, 
+        @JsonProperty("vidaActual") int vidaActual, 
+        @JsonProperty("vidaTotal") int vidaTotal, 
+        @JsonProperty("habilidades") HabilidadDTO[] habilidades, 
+        @JsonProperty("isVivo") boolean isVivo
+    ) {
         this.idAnimatronico = idAnimatronico;
         this.tipo = tipo;
         this.turnoAnimatronico = turnoAnimatronico;
@@ -40,39 +49,13 @@ public class AnimatronicoDTO {
         this.isVivo = isVivo;
     }
 
-    public String getIdAnimatronico() {
-        return idAnimatronico;
-    }
-
-    public TipoAnimatronico getTipo() {
-        return tipo;
-    }
-
-    public boolean isTurnoAnimatronico() {
-        return turnoAnimatronico;
-    }
-
-    public int getFuerza() {
-        return fuerza;
-    }
-
-    public int getArmadura() {
-        return armadura;
-    }
-
-    public int getVidaActual() {
-        return vidaActual;
-    }
-
-    public int getVidaTotal() {
-        return vidaTotal;
-    }
-
-    public HabilidadDTO[] getHabilidades() {
-        return habilidades;
-    }
-
-    public boolean isVivo() {
-        return isVivo;
-    }
+    public String getIdAnimatronico() { return idAnimatronico; }
+    public TipoAnimatronico getTipo() { return tipo; }
+    public boolean isTurnoAnimatronico() { return turnoAnimatronico; }
+    public int getFuerza() { return fuerza; }
+    public int getArmadura() { return armadura; }
+    public int getVidaActual() { return vidaActual; }
+    public int getVidaTotal() { return vidaTotal; }
+    public HabilidadDTO[] getHabilidades() { return habilidades; }
+    public boolean isIsVivo() { return isVivo; }
 }

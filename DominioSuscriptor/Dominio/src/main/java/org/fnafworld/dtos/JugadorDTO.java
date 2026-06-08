@@ -4,22 +4,30 @@
  */
 package org.fnafworld.dtos;
 
-import java.awt.image.BufferedImage;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.fnafworld.Equipo;
-
 /**
- *
+ * 
  * @author lagar
  */
 public class JugadorDTO {
     private final String id; 
     private final String nombre;
-    private final BufferedImage avatar;
+    private final byte[] avatar; 
     private final AnimatronicoDTO[] grupo;
     private final boolean miTurno;
     private final Equipo equipo;
 
-    public JugadorDTO(String id, String nombre, BufferedImage avatar, AnimatronicoDTO[] grupo, boolean miTurno, Equipo equipo) {
+    @JsonCreator
+    public JugadorDTO(
+        @JsonProperty("id") String id, 
+        @JsonProperty("nombre") String nombre, 
+        @JsonProperty("avatar") byte[] avatar, 
+        @JsonProperty("grupo") AnimatronicoDTO[] grupo, 
+        @JsonProperty("miTurno") boolean miTurno, 
+        @JsonProperty("equipo") Equipo equipo
+    ) {
         this.id = id;
         this.nombre = nombre;
         this.avatar = avatar;
@@ -28,27 +36,10 @@ public class JugadorDTO {
         this.equipo = equipo;
     }
     
-    public String getId() {
-        return id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public BufferedImage getAvatar() {
-        return avatar;
-    }
-
-    public AnimatronicoDTO[] getGrupo() {
-        return grupo;
-    }
-
-    public boolean isMiTurno() {
-        return miTurno;
-    }   
-
-    public Equipo getEquipo() {
-        return equipo;
-    }
+    public String getId() { return id; }
+    public String getNombre() { return nombre; }
+    public byte[] getAvatar() { return avatar; }
+    public AnimatronicoDTO[] getGrupo() { return grupo; }
+    public boolean isMiTurno() { return miTurno; }   
+    public Equipo getEquipo() { return equipo; }
 }

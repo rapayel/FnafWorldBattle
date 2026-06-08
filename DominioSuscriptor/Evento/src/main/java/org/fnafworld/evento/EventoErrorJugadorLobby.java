@@ -6,25 +6,25 @@ package org.fnafworld.evento;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.fnafworld.dtos.ResultadoAtaqueDTO;
+import org.fnafworld.dtos.JugadorLobbyDTO;
 
 /**
  *
  * @author lagar
  */
-public class EventoPartidaIniciada extends EventoResultado {
-    private ResultadoAtaqueDTO estadoInicial;
+public class EventoErrorJugadorLobby extends EventoError {
+    private JugadorLobbyDTO jugadorError;
 
     @JsonCreator
-    public EventoPartidaIniciada(
-        @JsonProperty("estadoInicial") ResultadoAtaqueDTO estadoInicial, 
+    public EventoErrorJugadorLobby(
+        @JsonProperty("jugadorError") JugadorLobbyDTO jugadorError, 
         @JsonProperty("id") String id
     ) {
         super(id);
-        this.estadoInicial = estadoInicial;
+        this.jugadorError = jugadorError;
     }
 
-    public ResultadoAtaqueDTO getEstadoInicial() {
-        return estadoInicial;
+    public JugadorLobbyDTO getJugadorError() {
+        return jugadorError;
     }
 }

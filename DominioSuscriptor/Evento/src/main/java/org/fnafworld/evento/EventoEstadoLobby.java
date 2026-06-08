@@ -4,16 +4,22 @@
  */
 package org.fnafworld.evento;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.fnafworld.dtos.EstadoLobbyDTO;
 
 /**
  *
  * @author lagar
  */
-public class EventoEstadoLobby extends EventoResultado{
+public class EventoEstadoLobby extends EventoResultado {
     private EstadoLobbyDTO estadoActualLobby;
 
-    public EventoEstadoLobby(EstadoLobbyDTO estadoActualLobby, String id) {
+    @JsonCreator
+    public EventoEstadoLobby(
+        @JsonProperty("estadoActualLobby") EstadoLobbyDTO estadoActualLobby, 
+        @JsonProperty("id") String id
+    ) {
         super(id);
         this.estadoActualLobby = estadoActualLobby;
     }

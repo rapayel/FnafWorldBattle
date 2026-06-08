@@ -4,14 +4,18 @@
  */
 package org.fnafworld.evento;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  *
  * @author lagar
  */
-public class EventoAccion{
+public class EventoAccion {
     private String id;
 
-    public EventoAccion(String id) {
+    @JsonCreator
+    public EventoAccion(@JsonProperty("id") String id) {
         this.id = id;
     }
 

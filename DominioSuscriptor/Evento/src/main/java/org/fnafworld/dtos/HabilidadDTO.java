@@ -4,10 +4,11 @@
  */
 package org.fnafworld.dtos;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.fnafworld.TipoHabilidad;
-
 /**
- *
+ * 
  * @author lagar
  */
 public class HabilidadDTO {
@@ -19,21 +20,18 @@ public class HabilidadDTO {
         this(poder, tipo, null);
     }
 
-    public HabilidadDTO(int poder, TipoHabilidad tipo, String descripcion) {
+    @JsonCreator
+    public HabilidadDTO(
+        @JsonProperty("poder") int poder, 
+        @JsonProperty("tipo") TipoHabilidad tipo, 
+        @JsonProperty("descripcion") String descripcion
+    ) {
         this.poder = poder;
         this.tipo = tipo;
         this.descripcion = descripcion;
     }
 
-    public int getPoder() {
-        return poder;
-    }
-
-    public TipoHabilidad getTipo() {
-        return tipo;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
+    public int getPoder() { return poder; }
+    public TipoHabilidad getTipo() { return tipo; }
+    public String getDescripcion() { return descripcion; }
 }

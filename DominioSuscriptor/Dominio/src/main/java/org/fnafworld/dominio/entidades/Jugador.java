@@ -3,8 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package org.fnafworld.dominio.entidades;
-
-import java.awt.image.BufferedImage;
 import org.fnafworld.Equipo;
 
 /**
@@ -14,18 +12,18 @@ import org.fnafworld.Equipo;
 public class Jugador {
     private String id; 
     private String nombre;
-    private BufferedImage avatar;
+    private byte[] avatar;
     private Animatronico[] grupo;
     private boolean miTurno;
     private Equipo equipo;
 
-    public Jugador(String id, String nombre, BufferedImage avatar, Animatronico[] grupo, Equipo equipo) {
+    public Jugador(String id, String nombre, byte[] avatar, Animatronico[] grupo, Equipo equipo) {
         this.id = id;
         this.nombre = nombre;
         this.avatar = avatar;
         this.grupo = grupo;
         this.equipo = equipo;
-    }       
+    }
     
     public boolean equipoDerrotado() {
         if (grupo == null || grupo.length == 0) {
@@ -59,7 +57,7 @@ public class Jugador {
         return nombre;
     }
 
-    public BufferedImage getAvatar() {
+    public byte[] getAvatar() {
         return avatar;
     }
 

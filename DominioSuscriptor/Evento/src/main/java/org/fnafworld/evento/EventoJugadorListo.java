@@ -4,16 +4,22 @@
  */
 package org.fnafworld.evento;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.fnafworld.dtos.JugadorLobbyDTO;
 
 /**
  *
  * @author lagar
  */
-public class EventoJugadorListo extends EventoResultado{
+public class EventoJugadorListo extends EventoResultado {
     private JugadorLobbyDTO jugadorListo;
 
-    public EventoJugadorListo(JugadorLobbyDTO jugadorListo, String id) {
+    @JsonCreator
+    public EventoJugadorListo(
+        @JsonProperty("jugadorListo") JugadorLobbyDTO jugadorListo, 
+        @JsonProperty("id") String id
+    ) {
         super(id);
         this.jugadorListo = jugadorListo;
     }

@@ -1,5 +1,16 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Enum.java to edit this template
+ */
 package org.fnafworld;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+/**
+ * 
+ * @author lagar
+ */
+@JsonFormat(shape = JsonFormat.Shape.STRING)
 public enum TipoHabilidad {
     MicToss(true, true, false),
     Hook(true, true, false),
@@ -71,7 +82,31 @@ public enum TipoHabilidad {
         this.enPrizeBall2 = enPrizeBall2;
     }
 
-    public boolean esAtaque() { return esAtaque; }
-    public boolean isEnPrizeBall() { return enPrizeBall; }
-    public boolean isEnPrizeBall2() { return enPrizeBall2; }
+    public boolean esAtaque() {
+        return esAtaque;
+    }
+
+    public boolean isEnPrizeBall() {
+        return enPrizeBall;
+    }
+
+    public boolean isEnPrizeBall2() {
+        return enPrizeBall2;
+    }
+
+    public static TipoHabilidad[] enPrizeBall() {
+        java.util.List<TipoHabilidad> lista = new java.util.ArrayList<>();
+        for (TipoHabilidad t : values()) {
+            if (t.enPrizeBall) lista.add(t);
+        }
+        return lista.toArray(new TipoHabilidad[0]);
+    }
+
+    public static TipoHabilidad[] enPrizeBall2() {
+        java.util.List<TipoHabilidad> lista = new java.util.ArrayList<>();
+        for (TipoHabilidad t : values()) {
+            if (t.enPrizeBall2) lista.add(t);
+        }
+        return lista.toArray(new TipoHabilidad[0]);
+    }
 }
