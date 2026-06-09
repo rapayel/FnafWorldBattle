@@ -12,7 +12,7 @@ import org.fnafworld.dtos.ResultadoAtaqueDTO;
  *
  * @author lagar
  */
-public class EventoResultadoAtaque extends EventoAccion {
+public class EventoResultadoAtaque extends EventoResultado {
     private ResultadoAtaqueDTO resultadoAtaque;
 
     @JsonCreator

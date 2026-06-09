@@ -42,10 +42,6 @@ public class TraductorDominio {
 
     public void procesarEntrada(byte[] bytes) {
         if (bytes == null || bytes.length == 0) return;
-
-        // 1. Leer solo el campo "id" del mensaje binario sin deserializar al tipo concreto.
-        //    Así evitamos una deserialización extra y no dependemos de la jerarquía de clases
-        //    para determinar el tipo de evento (útil cuando el cliente es otro lenguaje).
         String tipoEvento;
         try {
             @SuppressWarnings("unchecked")
@@ -62,88 +58,81 @@ public class TraductorDominio {
         }
 
         Object resultadoParaEnviar = null;
-
-        // 2. Enrutar según el id del evento, deserializar al hijo correcto e invocar la fachada
         try {
             switch (tipoEvento) {
-                case "crearPartida":
-                    EventoCrearPartida ecp = deserializar(bytes, EventoCrearPartida.class);
-                    JugadorLobbyDTO jlCrear = dominio.crearPartida(ecp.getUrlFondo(), ecp.getUrlMusica(), ecp.getJugadorCreado());
-                    
-                    if (jlCrear != null && jlCrear.getError() != null) {
-                        resultadoParaEnviar = new EventoErrorJugadorLobby(jlCrear, "errorCrearPartida");
-                    } else {
-                        resultadoParaEnviar = new EventoPartidaCreada(jlCrear, "partidaCreada");
+
+            case "crearPartida":
+                EventoCrearPartida ecp = deserializar(bytes, EventoCrearPartida.class);
+                JugadorLobbyDTO jlCrear = dominio.crearPartida(ecp.getUrlFondo(), ecp.getUrlMusica(), ecp.getJugadorCreado());
+
+                if (jlCrear != null && jlCrear.getError() != null) {
+                    resultadoParaEnviar = new EventoErrorJugadorLobby(jlCrear, "errorCrearPartida");
+                } else {
+                    resultadoParaEnviar = new EventoPartidaCreada(jlCrear, "partidaCreada");
+                }
+                break;
+
+            case "unirsePartida":
+                EventoUnirsePartida eup = deserializar(bytes, EventoUnirsePartida.class);
+                JugadorLobbyDTO jlUnir = dominio.unirsePartida(eup.getJugadorSolicitud());
+
+                if (jlUnir != null && jlUnir.getError() != null) {
+                    resultadoParaEnviar = new EventoErrorJugadorLobby(jlUnir, "errorUnirsePartida");
+                } else {
+                    resultadoParaEnviar = new EventoJugadorUnido(jlUnir, "jugadorUnido");
+                }
+                break;
+
+            case "seleccionarEquipo":
+                EventoSeleccionarEquipo ese = deserializar(bytes, EventoSeleccionarEquipo.class);
+                JugadorLobbyDTO jlEquipo = dominio.seleccionarEquipo(ese.getIdJugador(), ese.getEquipo());
+
+                if (jlEquipo != null && jlEquipo.getError() != null) {
+                    resultadoParaEnviar = new EventoErrorJugadorLobby(jlEquipo, "errorSeleccionarEquipo");
+                } else {
+                    resultadoParaEnviar = new EventoEquipoSeleccionado(jlEquipo, "equipoSeleccionado");
+                }
+                break;
+
+            case "establecerListo":
+                EventoEstablecerListo eel = deserializar(bytes, EventoEstablecerListo.class);
+                JugadorLobbyDTO jlListo = dominio.establecerListo(eel.getIdJugador(), eel.getGrupo(), eel.isListo());
+
+                if (jlListo != null && jlListo.getError() != null) {
+                    resultadoParaEnviar = new EventoErrorJugadorLobby(jlListo, "errorEstablecerListo");
+                } else {
+                    resultadoParaEnviar = new EventoJugadorListo(jlListo, "jugadorListo");
+                }
+                break;
+
+            case "iniciarPartida":
+                ResultadoAtaqueDTO resInicio = dominio.iniciarPartida();
+                if (resInicio != null && resInicio.getError() != null) {
+                    JugadorLobbyDTO jugadorErrorLobby = new JugadorLobbyDTO(null, null, null, null, null, false);
+                    resultadoParaEnviar = new EventoErrorJugadorLobby(jugadorErrorLobby, "errorIniciarPartida");
+                } else {
+                    resultadoParaEnviar = new EventoPartidaIniciada(resInicio, "partidaIniciada");
+                }
+                break;
+
+            case "atacar":
+                EventoAtacar ea = deserializar(bytes, EventoAtacar.class);
+                ResultadoAtaqueDTO resAtaque = dominio.atacar(ea.getAtaque());
+
+                if (resAtaque != null && resAtaque.getError() != null) {
+                    resultadoParaEnviar = new EventoAtaqueError(ea.getAtaque(), "ataqueError");
+                } else {
+                    resultadoParaEnviar = new EventoResultadoAtaque(resAtaque, "resultadoAtaque");
+                }
+                break;
+                        default:
+                            System.err.println("Traductor: Identificador de acción desconocido -> " + tipoEvento);
+                            return;
                     }
-                    break;
-
-                case "unirsePartida":
-                    EventoUnirsePartida eup = deserializar(bytes, EventoUnirsePartida.class);
-                    JugadorLobbyDTO jlUnir = dominio.unirsePartida(eup.getJugadorSolicitud());
-                    
-                    if (jlUnir != null && jlUnir.getError() != null) {
-                        resultadoParaEnviar = new EventoErrorJugadorLobby(jlUnir, "errorUnirsePartida");
-                    } else {
-                        resultadoParaEnviar = new EventoJugadorUnido(jlUnir, "jugadorUnido");
-                    }
-                    break;
-
-                case "seleccionarEquipo":
-                    EventoSeleccionarEquipo ese = deserializar(bytes, EventoSeleccionarEquipo.class);
-                    JugadorLobbyDTO jlEquipo = dominio.seleccionarEquipo(ese.getIdJugador(), ese.getEquipo());
-                    
-                    if (jlEquipo != null && jlEquipo.getError() != null) {
-                        resultadoParaEnviar = new EventoErrorJugadorLobby(jlEquipo, "errorSeleccionarEquipo");
-                    } else {
-                        resultadoParaEnviar = new EventoEquipoSeleccionado(jlEquipo, "equipoSeleccionado");
-                    }
-                    break;
-
-                case "establecerListo":
-                    EventoEstablecerListo eel = deserializar(bytes, EventoEstablecerListo.class);
-                    JugadorLobbyDTO jlListo = dominio.establecerListo(eel.getIdJugador(), eel.getGrupo(), eel.isListo());
-                    
-                    if (jlListo != null && jlListo.getError() != null) {
-                        resultadoParaEnviar = new EventoErrorJugadorLobby(jlListo, "errorEstablecerListo");
-                    } else {
-                        resultadoParaEnviar = new EventoJugadorListo(jlListo, "jugadorListo");
-                    }
-                    break;
-
-                case "obtenerEstadoLobby":
-                    EstadoLobbyDTO estadoLobby = dominio.obtenerEstadoLobby();
-                    resultadoParaEnviar = new EventoEstadoLobby(estadoLobby, "estadoLobby");
-                    break;
-
-                case "iniciarPartida":
-                    ResultadoAtaqueDTO resInicio = dominio.iniciarPartida();
-                    if (resInicio != null && resInicio.getError() != null) {
-                        JugadorLobbyDTO jugadorErrorLobby = new JugadorLobbyDTO(null, null, null, null, null, false, resInicio.getError());
-                        resultadoParaEnviar = new EventoErrorJugadorLobby(jugadorErrorLobby, "errorIniciarPartida");
-                    } else {
-                        resultadoParaEnviar = new EventoPartidaIniciada(resInicio, "partidaIniciada");
-                    }
-                    break;
-
-                case "atacar":
-                    EventoAtacar ea = deserializar(bytes, EventoAtacar.class);
-                    ResultadoAtaqueDTO resAtaque = dominio.atacar(ea.getAtaque());
-                    
-                    if (resAtaque != null && resAtaque.getError() != null) {
-                        resultadoParaEnviar = new EventoAtaqueError(ea.getAtaque(), "ataqueError");
-                    } else {
-                        resultadoParaEnviar = new EventoResultadoAtaque(resAtaque, "resultadoAtaque");
-                    }
-                    break;
-
-                default:
-                    System.err.println("Traductor: Identificador de acción desconocido -> " + tipoEvento);
-                    return;
-            }
-        } catch (Exception e) {
-            System.err.println("Error procesando la lógica del evento '" + tipoEvento + "': " + e.getMessage());
-            e.printStackTrace();
-        }
+                } catch (Exception e) {
+                    System.err.println("Error procesando la lógica del evento '" + tipoEvento + "': " + e.getMessage());
+                    e.printStackTrace();
+                }
 
         if (resultadoParaEnviar != null) {
             enviarRespuesta(resultadoParaEnviar);

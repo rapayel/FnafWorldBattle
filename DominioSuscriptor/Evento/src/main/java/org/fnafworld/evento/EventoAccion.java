@@ -22,8 +22,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
     @JsonSubTypes.Type(value = EventoEstablecerListo.class, name = "establecerListo"),
     @JsonSubTypes.Type(value = EventoObtenerEstadoLobby.class, name = "obtenerEstadoLobby"),
     @JsonSubTypes.Type(value = EventoIniciarPartida.class, name = "iniciarPartida"),
-    @JsonSubTypes.Type(value = EventoAtacar.class, name = "atacar"),
-    @JsonSubTypes.Type(value = EventoResultadoAtaque.class, name = "resultadoAtaque")
+    @JsonSubTypes.Type(value = EventoAtacar.class, name = "atacar")
 })
 public class EventoAccion {
     private String id;
