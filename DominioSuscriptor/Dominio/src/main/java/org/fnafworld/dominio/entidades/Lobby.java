@@ -60,7 +60,8 @@ public class Lobby {
         jugadores.put(dto.getId(), nuevoJugador);
         return nuevoJugador;
     }
-
+    
+    
     public JugadorLobbyDTO seleccionarEquipo(String idJugador, Equipo equipo) {
         if (idJugador == null) {
             JugadorDTO errorDto = new JugadorDTO(null, null, null, null, false, equipo);

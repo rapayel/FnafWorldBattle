@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.fnafworld.Equipo;
 import org.fnafworld.ErrorLobby;
+
 /**
- * 
  * @author lagar
  */
 public class JugadorLobbyDTO {
@@ -16,9 +16,10 @@ public class JugadorLobbyDTO {
     private final AnimatronicoDTO[] grupo;
     private final boolean listo;
     private final ErrorLobby error;
+    private final AnimatronicoDTO[] animatronicosDisponibles;
 
     public JugadorLobbyDTO(String id, String nombre, byte[] avatar, Equipo equipo, AnimatronicoDTO[] grupo, boolean listo) {
-        this(id, nombre, avatar, equipo, grupo, listo, null);
+        this(id, nombre, avatar, equipo, grupo, listo, null, new AnimatronicoDTO[0]);
     }
 
     @JsonCreator
@@ -29,7 +30,8 @@ public class JugadorLobbyDTO {
         @JsonProperty("equipo") Equipo equipo, 
         @JsonProperty("grupo") AnimatronicoDTO[] grupo, 
         @JsonProperty("listo") boolean listo, 
-        @JsonProperty("error") ErrorLobby error
+        @JsonProperty("error") ErrorLobby error,
+        @JsonProperty("animatronicosDisponibles") AnimatronicoDTO[] animatronicosDisponibles
     ) {
         this.id = id;
         this.nombre = nombre;
@@ -38,6 +40,7 @@ public class JugadorLobbyDTO {
         this.grupo = grupo;
         this.listo = listo;
         this.error = error;
+        this.animatronicosDisponibles = animatronicosDisponibles != null ? animatronicosDisponibles : new AnimatronicoDTO[0];
     }
 
     public String getId() { return id; }
@@ -47,4 +50,5 @@ public class JugadorLobbyDTO {
     public AnimatronicoDTO[] getGrupo() { return grupo; }
     public boolean isListo() { return listo; }
     public ErrorLobby getError() { return error; }
+    public AnimatronicoDTO[] getAnimatronicosDisponibles() { return animatronicosDisponibles; }
 }
