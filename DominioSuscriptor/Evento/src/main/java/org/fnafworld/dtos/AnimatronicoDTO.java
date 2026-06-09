@@ -57,5 +57,5 @@ public class AnimatronicoDTO {
     public int getVidaActual() { return vidaActual; }
     public int getVidaTotal() { return vidaTotal; }
     public HabilidadDTO[] getHabilidades() { return habilidades; }
-    public boolean isIsVivo() { return isVivo; }
+    public boolean isVivo() { return isVivo; }
 }

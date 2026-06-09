@@ -4,10 +4,13 @@
  */
 package org.fnafworld;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  *
  * @author lagar
  */
+@JsonFormat(shape = JsonFormat.Shape.STRING)
 public enum Equipo {
     Rojo, Azul
 }

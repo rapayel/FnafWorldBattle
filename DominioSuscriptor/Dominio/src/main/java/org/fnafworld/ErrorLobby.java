@@ -4,10 +4,13 @@
  */
 package org.fnafworld;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  *
  * @author lagar
  */
+@JsonFormat(shape = JsonFormat.Shape.STRING)
 public enum ErrorLobby {
     URL_CAMPO_INVALIDA,
     URL_MUSICA_INVALIDA,
