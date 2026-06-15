@@ -6,3 +6,6 @@ MVCFnafWorld.zip
 /DominioSuscriptor/ComponenteConexion/target/
 /DominioSuscriptor/Evento/target/
 /DominioSuscriptor/TraductorDominio/target/
+/Broker/ComponenteConexion/target/
+/Broker/Evento/target/
+/Broker/Serializador/target/
